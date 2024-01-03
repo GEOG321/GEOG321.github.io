@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<title>GEOB 300 - Resources</title> 
+	<link rel="stylesheet" type="text/css" href="browser.css">
+<script type="text/javascript" src="browser.js"></script> 
+</head>
+<body bgcolor="#000000" text="#CCCCCC" link="#FFFFFF" alink="#FFFFFF" vlink="#00CCCC" onload="javascript:startup()">
+<center>
+	<form name="navform" action="empty()">
+		<table border="0" cellpadding="5" cellspacing="8" width="100%">
+			<tr>
+				<td align="left" valign="top" colspan="2">
+					<p>
+						<b>GEOB 300 - Modelled irradiance on slopes.</b> 
+					</p>
+					<p>
+						Slope angle: <select name="slope" onchange="LoadGraph()"> 
+							<option value="00">
+								0&deg; (flat surface)
+							</option>
+							<option value="10">
+								10&deg;
+							</option>
+							<option value="20" selected>
+								20&deg;
+							</option>
+							<option value="45">
+								45&deg;
+							</option>
+							<option value="90">
+								90&deg; (vertical wall)
+							</option>
+						</select> 
+						Slope azimuth: <select name="azimuth" onchange="LoadGraph()"> 
+							<option value="N">
+								0&deg; (N facing)
+							</option>
+							<option value="E">
+								90&deg; (E facing)
+							</option>
+							<option value="S" selected>
+								180&deg; (S facing)
+							</option>
+							<option value="W">
+								270&deg; (W facing)
+							</option>
+						</select> 
+						Latitude: 49&deg; N
+					</p>
+					<p>
+						Values in the graphs below represent the direct short-wave irradiance that would be received by a flat or sloped surface at the latitude of Vancouver (49&deg; N) in absence of any atmosphere. 
+						Values are approximated using the formulae in <a href="../../outlines/outline14.html">lecture 14</a> and the <a href="http://www.geog.ubc.ca/courses/geob300/resources/readings/readings14.pdf">reading package</a>. They can be also found in T.R. Oke 'Boundary Layer Climates', Appendix A1, p. 339-342, formulae A1.1 to A 1.4 and A 1.6 to A1.8). See also the <a href="../latitude/index.html">applet on latitudional effects</a>.
+					</p>
+				</td>
+			</tr>
+			<tr>
+				<td align="center">
+					<p align="center">
+						<img src="images/4920S.gif" align="TOP" width="516" height="720" alt="Graph" border="0"> 
+					</p>
+				</td>
+				<td align="left" width="100%">
+					<p align="center">
+						<img src="images/ramp.gif" align="left" width="108" height="407" alt="Legend" border="0"> 
+					</p>
+				</td>
+			</tr>
+		</table>
+	</form>
+</center>
+<center>
+
+<p align="center">The full source code in form of an interactive LabView VI can be downloaded from <a href="https://github.com/achristen/Extraterrestrial-Irradiance/">https://github.com/achristen/Extraterrestrial-Irradiance/</a></p>
+	<p align="center">
+		<font size="1"><a href="http://www.ubc.ca/">University of British Columbia</a> - <a href="http://www.geog.ubc.ca/courses/geog300/">GEOB 300</a> - Designed and programmed by: andreas.christen@ubc.ca. Supported by a TLEF grant 'climate@ubc' (University of British Columbia) and released under GNU GPL 2.0</p>
+</center>
+
+</body>
+</html>

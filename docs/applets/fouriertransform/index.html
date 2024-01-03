@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<title>GEOB 300 - Resources</title> 
+	<link rel="stylesheet" type="text/css" href="browser.css">
+<script type="text/javascript" src="browser.js"></script> 
+</head>
+<body bgcolor="#000000" text="#CCCCCC" link="#FFFFFF" alink="#FFFFFF" vlink="#00CCCC">
+<center>
+	<form name="navform" action="empty()">
+		<table border="0" cellpadding="5" cellspacing="8" width="100%">
+			<tr>
+				<td align="left" valign="top" colspan="2">
+					<p>
+						<b>GEOB 300 - Fourier transform basics</b> 
+					</p>
+					<p>
+						The Fourier transform is a tool to decompose a time series of <a href="../../glossary/index.html#turbulentfluctuation">turbulent fluctuations</a> into the frequency distribution of its <a href="../../glossary/index.html#eddies">eddies</a> and vice versa.
+</p>
+					<p>
+This web-applet shows how the Fourier transform works qualitatively. Let us 'build' a time series by adding different sine waves with different frequencies (number of cycles per second) and an <a href="../../glossary/index.html#amplitude">amplitude</a> of 3. In this demostration, you can only 'mix' (add) two different sine waves torgether. However, in a typical Fourier transform a signal is decomposed into many waves (see <a href="http://www.geog.ubc.ca/courses/geob300/resources/lecture18.html_files/lecture18.009.png">Lecture 18, slide 9</a>).</p>
+					<p>
+Note, we generate an artificial signal with two base waves so the power spectrum (last graph)  shows one or two peaks only. Real atmospheric spectra show all frequencies (see <a href="http://www.geog.ubc.ca/courses/geob300/resources/lecture18.html_files/lecture18.011.png">Lecture 18, slide 11</a> for an example).</p>
+					<table border="0" cellpadding="0" cellspacing="0">
+						<tr>
+							<td>
+								<p>
+									Frequency Signal 1 (in s<sup>-1</sup>): <select name="sig1" onchange="LoadGraph()"> 
+										<option value="00">
+											Off 
+										</option>
+										<option value="01" selected>
+											1
+										</option>
+										<option value="02">
+											2 
+										</option>
+										<option value="05">
+											5 
+										</option>
+										<option value="10">
+											10 
+										</option>
+										<option value="20">
+											20 
+										</option>
+										<option value="50">
+											50 
+										</option>
+									</select> 
+								</p>
+								<p align="center">
+									<img src="images/01.gif" align="TOP" alt="Signal 1" border="0"> 
+								</p>
+							</td>
+							<td valing="middle">
+							  <p><font size="6">+</font></p>
+							</td>
+							<td>
+								<p>
+									Frequency Signal 2 (in s<sup>-1</sup>): <select name="sig2" onchange="LoadGraph()"> 
+										<option value="00" selected>
+											Off 
+										</option>
+										<option value="01">
+											1
+										</option>
+										<option value="02">
+											2 
+										</option>
+										<option value="05">
+											5 
+										</option>
+										<option value="10">
+											10 
+										</option>
+										<option value="20">
+											20 
+										</option>
+										<option value="50">
+											50 
+										</option>
+									</select> 
+								</p>
+								<p align="center">
+									<img src="images/00.gif" align="TOP" alt="Signal 1" border="0"> 
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td align="center" colspan="3">
+							    Signal 1 + Signal 2: 
+								<p align="center">
+									<img src="images/01_00.gif" align="TOP" alt="Time Series and Fourier Transform" border="0"> 
+								</p>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</form>
+	<p align="center">
+		<font size="1"><a href="http://www.ubc.ca/">University of British Columbia</a> - <a href="http://www.geog.ubc.ca/courses/geog300/">GEOB 300</a> - Designed and programmed by: andreas.christen@ubc.ca. Supported by a TLEF grant 'climate@ubc'.	</p>
+</center>
+</body>
+</html>

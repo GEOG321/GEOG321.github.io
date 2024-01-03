@@ -1,0 +1,283 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<title>GEOB 300 - Resources</title> 
+	<link rel="stylesheet" type="text/css" href="browser.css">
+<script type="text/javascript" src="browser.js"></script> 
+</head>
+<body bgcolor="#FFFFFF" text="#CCCCCC" link="#FFFFFF" alink="#FFFFFF" vlink="#00CCCC" onload="animateAmp();animatePro();">
+<center>
+	<p>
+		<b>GEOB 300 - Modelled soil temperatures for a homogeneous soil.</b> 
+	</p>
+	<p align="left">
+		This web-applet illustrates the analytical solution for the heat flux equation we discussed in <a href="../../outlines/outline12.html">Lecture 12</a>. We assume a homogeneous soil and apply a sinusoidal daily course of the surface temperature (<a href="images/ampMS00.gif">first graph</a>, red curve).
+	</p>
+	<form name="navform" action="empty()">
+		<p align="center">Select a model run: 
+			<select name="run" onchange="ChangeAll()"> 
+				<option value="MS" selected>
+					Saturated mineral soil 
+				</option>
+				<option value="OS">
+					Saturated peat soil 
+				</option>
+			</select> <BR>
+			The parameters for the runs can be found at the <a href="#table">end of this page</a>.
+		</p>
+		<hr>
+		<table border="0" cellpadding="6" cellspacing="0" width="100%">
+			<tr>
+				<td align="right">
+					<p align="right">
+						Display diurnal temperture curve at depth: <select name="depth" onchange="LoadAmplitude()"> 
+							<option value="00">
+								0 cm (surface) 
+							</option>
+							<option value="05">
+								5 cm 
+							</option>
+							<option value="10" selected>
+								10 cm 
+							</option>
+							<option value="15">
+								15 cm 
+							</option>
+							<option value="20">
+								20 cm 
+							</option>
+							<option value="25">
+								25 cm 
+							</option>
+							<option value="30">
+								30 cm 
+							</option>
+							<option value="35">
+								35 cm 
+							</option>
+							<option value="40">
+								40 cm 
+							</option>
+							<option value="45">
+								45 cm 
+							</option>
+							<option value="50">
+								50 cm 
+							</option>
+						</select> 
+						<br>
+						<input type="button" onclick="animationAmp = true;" value="Animate">&nbsp; <input type="button" onclick="animationAmp = false;" value="Stop">&nbsp; 
+					<p>
+					<p align="right" valign="bottom">
+						<img src="images/ampMS10.gif" align="right" valign="bottom" width="444" height="246" alt="Amplitude" border="0"> 
+					</p>
+				</td>
+				<td align="left" valign="bottom" rowspan="2">
+					<p align="right">
+						<img src="images/legend.gif" valign="bottom" align="right" width="73" height="276" alt="Legend" border="0"> 
+					</p>
+				</td>
+				<td align="left" valign="bottom" rowspan="2">
+					<p align="right">
+						Display profile at time: <select name="time" onchange="LoadProfile()"> 
+							<option value="00">
+								00:00 
+							</option>
+							<option value="01">
+								01:00 
+							</option>
+							<option value="02">
+								02:00 
+							</option>
+							<option value="03">
+								03:00 
+							</option>
+							<option value="04">
+								04:00 
+							</option>
+							<option value="05">
+								05:00 
+							</option>
+							<option value="06">
+								06:00 
+							</option>
+							<option value="07">
+								07:00 
+							</option>
+							<option value="08">
+								08:00 
+							</option>
+							<option value="09">
+								09:00 
+							</option>
+							<option value="10">
+								10:00 
+							</option>
+							<option value="11">
+								11:00 
+							</option>
+							<option value="12">
+								12:00 
+							</option>
+							<option value="13">
+								13:00 
+							</option>
+							<option value="14">
+								14:00 
+							</option>
+							<option value="15">
+								15:00 
+							</option>
+							<option value="16">
+								16:00 
+							</option>
+							<option value="17">
+								17:00 
+							</option>
+							<option value="18">
+								18:00 
+							</option>
+							<option value="19">
+								19:00 
+							</option>
+							<option value="20">
+								20:00 
+							</option>
+							<option value="21">
+								21:00 
+							</option>
+							<option value="22">
+								22:00 
+							</option>
+							<option value="23">
+								23:00 
+							</option>
+						</select> 
+						<br>
+						<input type="button" onclick="animationPro = true;" value="Animate">&nbsp; <input type="button" onclick="animationPro = false;" value="Stop">&nbsp; 
+					</p>
+					<p align="right">
+						<img src="images/profMS00.gif" valign="bottom" align="right" width="276" height="297" alt="Legend" border="0"> 
+					</p>
+				</td>
+			</tr>
+			<tr>
+				<td align="right" valign="bottom">
+					<p align="right">
+						<img src="images/contMS.gif" valign="bottom" align="right" width="444" height="276" alt="Legend" border="0"> 
+					</p>
+				</td>
+			</tr>
+		</table>
+	</form>
+</center>
+<p align="left">
+	<a name="table"></a> The following table summarizes the settings for the above model runs: 
+<table border="1" cellpadding="6" cellspacing="0" width="100%">
+	<tr>
+		<th>
+			Run 
+		</th>
+		<th>
+			Saturated Mineral Soil 
+		</th>
+		<th>
+			Saturated Peat Soil 
+		</th>
+	</tr>
+	<tr>
+		<td>
+			<a href="../../glossary/index.html#porosity">Porosity</a> 
+		</td>
+		<td>
+			0.55 
+		</td>
+		<td>
+			0.85 
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<a href="../../glossary/index.html#volumentricwatercontent">Soil volumentric water content</a> <i>&theta<sub>w</sub></i> 
+		</td>
+		<td>
+			0.45 
+		</td>
+		<td>
+			0.15 
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<a href="../../glossary/index.html#heatcapacity">Heat capacity</a> of soil <i>C</i> 
+		</td>
+		<td>
+			3.2 MJ m<sup>-3</sup> K<sup>-1</sup> 
+		</td>
+		<td>
+			3.9 MJ m<sup>-3</sup> K<sup>-1</sup> 
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<a href="../../glossary/index.html#thermalconductivity">Thermal conductivity</a> of soil <i>k</i> 
+		</td>
+		<td>
+			1.7 W m<sup>-1</sup> K<sup>-1</sup> 
+		</td>
+		<td>
+			0.5 W m<sup>-1</sup> K<sup>-1</sup> 
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<a href="../../glossary/index.html#thermaldiffusivity">Thermal diffusivity</a> of soil <i>&micro;</i> 
+		</td>
+		<td>
+			5.0 x 10<sup>-7</sup> m<sup>2</sup> s<sup>-1</sup> 
+		</td>
+		<td>
+			1.2 x 10<sup>-7</sup> m<sup>2</sup> s<sup>-1</sup> 
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Amplitude of surface temperature wave <i>&Delta;T<sub>0</sub></i> 
+		</td>
+		<td colspan="2">
+			10 K 
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Daily average surface temperature <i>T<sub>0</sub></i> 
+		</td>
+		<td colspan="2">
+			15&deg;C 
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Wave period <i>P</i> 
+		</td>
+		<td colspan="2">
+			86400 s (=1 day) 
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Wave lag <i>t<sub>l</sub></i> 
+		</td>
+		<td colspan="2">
+			26400 s 
+		</td>
+	</tr>
+</table>
+</p>
+<center>
+	<p align="center">
+		<font size="1"><a href="http://www.ubc.ca/">University of British Columbia</a> - <a href="http://www.geog.ubc.ca/courses/geog300/">GEOB 300</a> - Designed and programmed by: andreas.christen@ubc.ca. Supported by a TLEF grant 'climate@ubc'. 	</p>
+		<p align="center">The full source code in form of an interactive LabView VI can be downloaded from <a href="https://github.com/achristen/Soil-Temperatures">https://github.com/achristen/Soil-Temperatures</a></p>
+</center>
+</body>
+</html>
