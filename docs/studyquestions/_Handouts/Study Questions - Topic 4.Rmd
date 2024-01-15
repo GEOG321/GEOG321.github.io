@@ -1,0 +1,177 @@
+---
+title: "Study Questions - Topic 4"
+author: "Your Name Here"
+date: "2023-01-16"
+output:
+  html_document:
+    df_print: paged
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### 1. Calculate Earth’s declination $\delta$ for the following dates: January 1, March 22, June 21, and December 31.
+
+```{r}
+# First define the DOY (day of year). This can either be done for a single day (i.e. a single value), or can be written as a vector (i.e. as shown below)
+DOY <- c(1,81,172,365) # the c() function creates a vector
+cat("DOYs included in the vector are: ", DOY) # This displays DOY
+```
+
+```{r}
+# The declination angle (defined as delta below) can be estimated using the simplified equation in Topic 4, Slide 7
+delta <- -23.4*cos(2*pi*(DOY+10)/365)
+```
+
+
+```{r}
+# Display output for all dates 
+cat("The declination for January 1 is: ", round(delta[1],2),intToUtf8(176), "\n") # intToUtf8(176) is the symbol for degree
+cat("The declination for March 22 is: ", round(delta[2],2),intToUtf8(176), "\n")
+cat("The declination for June 21 is: ", round(delta[3],2),intToUtf8(176), "\n")
+cat("The declination for December 31 is: ", round(delta[4],2),intToUtf8(176), "\n")
+```
+
+```{r}
+# A more accurate way of estimating the declination angle is given below
+
+# First we need to estimate gamma - the fractional year:
+gamma <- ((2*pi/365)*(DOY-1))
+
+# Next, estimate the declination angle using the more precise method. We will call this variable delta2 
+delta2 <- 0.006918 - 0.399912*cos(gamma) + 0.070257*sin(gamma) - 0.006758*cos(2*gamma) + 0.000907*sin(2*gamma) - 0.002697*cos(3*gamma) + 0.00148*sin(3*gamma)
+
+# Note that delta2 is in radians - we need to convert radians to degrees
+delta2deg <- delta2*(180/pi)
+```
+
+
+```{r}
+# Display output for all dates for gamma2deg (declination angle in degrees) - note that the answers are close to the output above for delta, but differ slightly
+cat("The declination for January 1 is: ", round(delta2deg[1],2),intToUtf8(176), "\n")
+cat("The declination for March 22 is: ", round(delta2deg[2],2),intToUtf8(176), "\n")
+cat("The declination for June 21 is: ", round(delta2deg[3],2),intToUtf8(176), "\n")
+cat("The declination for December 31 is: ", round(delta2deg[4],2),intToUtf8(176), "\n")
+```
+
+### 2. Calculate the Local Mean Solar Time (LMST) for Montreal, QC if a regular 24h clock shows 14:00 on February 15th, and 08:00 on July 22nd.
+
+```{r}
+# First define Local Solar Time (LST)
+# You will need to install the hms package 
+# install.packages("hms") #uncomment the first time you run this, then comment out again
+library(hms)
+
+LST <- c(as_hms("14:00:00"),as_hms("08:00:00"))
+
+# define the standard meridian for Port Hardy
+Standard_meridian <- -75
+
+# Define the longitude
+long <- -73.5674
+
+# Define the difference between Montreal's longitude and the standard meridian
+delta_long  <-  long-Standard_meridian
+
+# Specify if we need to account for daylight savings (no for Feb 15th and yes for July 22nd - see answer key for more details)
+DST <- c(hms(0,0,0),hms(0,0,1)) # First hms is for Feb 15th and the second hms is July 22nd to take into account daylight savings
+
+# Calculate LMST for both days
+LMST <- LST+hms(0,delta_long*4,0)-DST
+
+# This is needed to output LMST in R's time format
+LMST <- hms(as.numeric(LMST))
+
+# Display output
+cat("At 14:00 on February 15th LMST is: ", as.character(LMST[1]), "\n")
+cat("At 08:00 on July 22nd LMST is: ", as.character(LMST[2]), "\n")
+```
+
+### 3. Calculate the Local Apparent Time (LAT) for the same location and times.
+
+```{r}
+# First define day of year and then gamma (i.e. fractional year in radians as described in Q1)
+DOY <- c(46,203)
+gamma <- (2*pi/365*(DOY-1))
+```
+
+
+```{r}
+# Next the time offset between LMST and LAT (i.e. delta_LAT), in minutes can be calculated using the formula given in Topic 4, Slide 12
+delta_LAT <- 229.18*(0.000075 + 0.001868*cos(gamma) - 0.032077*sin(gamma) - 0.014615*cos(2*gamma) - 0.040849*sin(2*gamma))
+
+# Convert to R time format 
+delta_LAT <- hms(seconds = NULL, minutes = delta_LAT, hours = NULL, days = NULL)
+```
+
+
+```{r}
+# Hence, LAT = LMST - delta_LAT
+LAT <- LMST - hms(as.numeric(delta_LAT))
+
+# This is needed to output LAT in R's time format
+LAT <- hms(as.numeric(LAT))
+
+# Display output
+cat("At 14:00 on February 15th LAT is: ", as.character(LAT[1]), "\n")
+cat("At 08:00 on July 22nd LAT is: ", as.character(LAT[2]), "\n")
+```
+
+### 4. Calculate the solar altitude angle $\beta$ for the same location and those two times.
+
+#### The solar altitude $\beta$ can then be calculated by: sin $\beta$ = sin$\phi$sin$\delta$ + cos$\phi$cos$\delta$cosh
+#### where $\phi$ is the latitude, $\delta$ is the declination (calculated as above), and h is the hour angle
+
+
+```{r}
+# To estimate the declination angle, first we need to calculate gamma - the fractional year. Note that we have to reculate gamma here since we are using different DOYs from Q1.
+gamma <- ((2*pi/365)*(DOY-1))
+
+# Now we can calculate the declination angle using the more precise formulation
+delta2 <- 0.006918 - 0.399912*cos(gamma) + 0.070257*sin(gamma) - 0.006758*cos(2*gamma) + 0.000907*sin(2*gamma) - 0.002697*cos(3*gamma) + 0.00148*sin(3*gamma)
+
+# Note that delta2 is in radians - we need to convert radians to degrees
+delta2deg <- delta2*(180/pi)
+
+# Define latitude. Note that here we use a vector to be able to calculate the solar altitude angle for both days
+latitude <- 45.5019
+latitude <- c(latitude,latitude)
+
+# Next we can calculate the hour angle (h = 15 degrees*(12 - LAT)) using LAT estimated above. 
+# Note LAT is the local apparent time (see above) in hours of the day (with minutes as a fraction of an hour). This can be calculated using the following:
+LAT2 <- as.numeric(LAT)/60/60 # This converts hh:mm:ss to hour of the day
+
+# Now calculate h
+h <- round(15*(12-LAT2)) # Round the hour angle to the nearest degree using round()
+
+# Now we can calculate the solar altitude angle
+# First calculate sin beta - note that we have to convert angles in degrees to radians (multiply degrees by (pi/180))
+sinbeta <- sin(latitude*(pi/180))*sin(delta2deg*(pi/180))+cos(latitude*(pi/180))*cos(delta2deg*(pi/180))*cos(h*(pi/180))
+
+# Next calculate beta (*(180/pi) to convert radians to degrees)
+beta <- asin(sinbeta)*(180/pi)
+
+# Display output
+cat("For Feb 15 beta is: ", round(beta[1],2), intToUtf8(176), "\n") # beta is rounded to 2 decimal points (using round() function)
+cat("For July 22 beta is: ", round(beta[2],2),intToUtf8(176), "\n") # beta is rounded to 2 decimal points (using round() function)
+```
+
+### 5. Calculate the extraterrestrial short-wave irradiance KEx for the same location and those two times.
+
+```{r}
+# Define the solar constant (I0):
+Io  <- 1366.5 # units of W m-2
+
+# Account for the non-circular orbit (changing distance over course of a year) (note gamma is calculated above)
+ratio2 <- 1.00011 + 0.034221*cos(gamma) + 0.001280*sin(gamma) + 0.000719*cos(2*gamma) + 0.000077*sin(2*gamma)
+
+# Calculate KEx (note that sinbeta is estimated above)
+KEx <- Io*ratio2*sinbeta
+
+cat("For February 15 at 14:00 KEx is: ", round(KEx[1]), "W/m2", "\n")
+cat("For July 22 at 8:00 KEx is: ", round(KEx[2]), "W/m2", "\n")
+```
+
+

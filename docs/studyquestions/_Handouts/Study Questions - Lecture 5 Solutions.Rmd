@@ -1,0 +1,239 @@
+---
+title: "Study Questions - Lecture 5 Solutions"
+author: "Your name here"
+date: "2023-01-17"
+output:
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+1. Use the web applet on modelled extraterrestrial irradiance (https://geog321.github.io/applets/latitude/) to answer the following questions: 
+
+(a) At what latitude do we expect the highest yearly total KEx? What is the consequence of this on global circulation?
+
+(b) At what latitude do we expect the maximum daily total KEx? How can we explain this? 
+
+(c) For Montreal QC, when do you expect the highest KEx, and when the lowest? 
+
+You can enter your answer below: 
+
+2. If at λ = 600 nm the spectral absorptivity of a completely opaque object is equal ζλ = 0.75, what is its spectral reflectivity αλ?
+
+
+```{r}
+# if Ψλ + αλ + ζλ = 1, where Ψλ is psi, αλ is alpha, and ζλ is zeta
+
+zeta <- 0.75
+psi <- 0 # Enter the value for psi here
+
+alpha <- 1-zeta # Rearranage the equation above to solve for apha 
+
+# Display output
+cat("The spectral reflectivity is: ", alpha)
+
+```
+
+3. In the the PAR range, a green leaf shows a reflectivity of  αPAR = 0.11 and a transmissivity ΨPAR = 0.08 (assume constant values across the PAR range). If incident PPFD on the leaf is 800 μmol s-1 m-1, calculate the absorbed PPFD.
+
+
+```{r}
+# Define known values
+alpha <- 0.11
+psi <- 0.08
+
+# Calculate absorptivity (zeta)
+zeta  <- 1-alpha-psi
+
+# Calculate absorbed PPFD
+PPFDin <- 800 # Incident PPDF (umol m-1 s-1)
+PPFDabs <- zeta*PPFDin
+
+# Display output
+cat("The the absorbed PPFD: ", PPFDabs, "umol m-2 s-1")
+```
+
+4. Calculate the bulk Atmospheric Transmissivity Ψa for Montreal, QC at 14:00 on February 15th if a pyranometer measures K↓ = 298 W m-2.
+
+```{r}
+# First define known variables
+Kdown <- 298 
+
+# Next calculate cosZ (or sin β - the two are equal) - see Study Questions for Lecture 4
+library(hms)
+
+LST <- as_hms("14:00:00")
+
+# define the standard meridian for Montreal
+Standard_meridian <- -75
+
+# Define the longitude
+long <- -73.5674
+
+# Define the difference between Montreal's longitude and the standard meridian
+delta_long  <- long - Standard_meridian
+
+# Calculate LMST for both days
+LMST <- LST+hms(0,delta_long*4,0)
+
+# This is needed to output LMST in {r}'s time format
+LMST <- hms(as.numeric(LMST))
+
+# Define DOY
+DOY <- 46
+gamma <- (2*pi/365*(DOY-1)) # Calculate gamma
+
+# Next the time offset between LMST and LAT (∆TLAT, i.e. deltaT_LAT), in minutes can be calculated using the formula given in Lecture 4, Slide 12
+deltaT_LAT <- 229.18*(0.000075 + 0.001868*cos(gamma) - 0.032077*sin(gamma) - 0.014615*cos(2*gamma) - 0.040849*sin(2*gamma))
+
+# Convert to {r} time format 
+deltaT_LAT <- hms(seconds = NULL, minutes = deltaT_LAT, hours = NULL, days = NULL)
+
+# Hence, LAT = LMST − ∆TLAT
+LAT <- LMST - hms(as.numeric(deltaT_LAT))
+
+# This is needed to output LAT in {r}'s time format
+LAT <- hms(as.numeric(LAT))
+
+# Now we can calculate the declination angle using the more precise formulation
+delta2 <- 0.006918 - 0.399912*cos(gamma) + 0.070257*sin(gamma) - 0.006758*cos(2*gamma) + 0.000907*sin(2*gamma) - 0.002697*cos(3*gamma) + 0.00148*sin(3*gamma)
+
+# Note that delta2 is in radians - we need to convert radians to degrees
+delta2deg <- delta2*(180/pi)
+
+# Define latitude. Note that here we use a vector to be able to calculate the solar altitude angle for both days
+latitude <- 45.5019
+
+# Next we can calculate the hour angle (h = 15◦(12 − LAT)) using LAT estimated above. 
+# Note LAT is the local apparent time (see above) in hours of the day (with minutes as a fraction of an hour). This can be calculated using the following:
+LAT2 <- as.numeric(LAT)/60/60 # This converts hh:mm:ss to hour of the day
+
+# Now calculate h
+h <- round(15*(12-LAT2)) # Round the hour angle to the nearest degree using round()
+
+# Now we can calculate the solar altitude angle
+# First calculate sin β - note that we have to convert angles in degrees to radians (multiply degrees by (pi/180))
+sinbeta <- sin(latitude*(pi/180))*sin(delta2deg*(pi/180))+cos(latitude*(pi/180))*cos(delta2deg*(pi/180))*cos(h*(pi/180))
+
+# Next calculate β (*(180/pi) to convert radians to degrees)
+beta <- asin(sinbeta)*(180/pi);
+
+# Display output
+cat("For February 15 β is: ", round(beta,2), intToUtf8(176), "\n") # β is rounded to 2 decimal points (using round() function)
+
+# Define cosZ
+cosZ <- sinbeta 
+
+# Calculate m
+m <- 1/cosZ
+cat("m is equal to: ", round(m,3), "\n")
+
+# Next Calculate the extraterrestrial short-wave irradiance KEx as done in Study Questions for Lecture 4
+# Define the solar constant (I0):
+Io  <- 1366.5 # units of W m−2
+
+# Account for the non-circular orbit (changing distance over course of a year) (note gamma is calculated above)
+ratio2 <- 1.00011 + 0.034221*cos(gamma) + 0.001280*sin(gamma) + 0.000719*cos(2*gamma) + 0.000077*sin(2*gamma)
+
+# Calculate KEx (note that sinbeta is estimated above)
+KEx <- Io*ratio2*sinbeta
+
+cat("For February 15 at 14:00 KEx is: ", round(KEx), "W/m2", "\n")
+
+# Finally we can calculate psia:
+psia  <-  (Kdown/KEx)^(1/m)
+
+# Display output
+cat("For February 15 at 14:00 psia is: ", round(psia,2), "\n")
+```
+
+5. Assume that transmissivity Ψa does not change over that day, and calculate K↓ for 10:00 (same location, same day).
+
+```{r}
+# The calculation will be similar to that above, except the time is now 10:00 am
+LST <- as_hms("10:00:00")
+
+# define the standard meridian for Montreal
+Standard_meridian <- -75
+
+# Define the longitude
+long <- -73.5674
+
+# Define the difference between Montreal's longitude and the standard meridian
+delta_long  <- long - Standard_meridian
+
+# Calculate LMST for both days
+LMST <- LST+hms(0,delta_long*4,0)
+
+# This is needed to output LMST in {r}'s time format
+LMST <- hms(as.numeric(LMST))
+
+# Define DOY
+DOY <- 46
+gamma <- (2*pi/365*(DOY-1)) # Calculate gamma
+
+# Next the time offset between LMST and LAT (∆TLAT, i.e. deltaT_LAT), in minutes can be calculated using the formula given in Lecture 4, Slide 12
+deltaT_LAT <- 229.18*(0.000075 + 0.001868*cos(gamma) - 0.032077*sin(gamma) - 0.014615*cos(2*gamma) - 0.040849*sin(2*gamma))
+
+# Convert to {r} time format 
+deltaT_LAT <- hms(seconds = NULL, minutes = deltaT_LAT, hours = NULL, days = NULL)
+
+# Hence, LAT = LMST − ∆TLAT
+LAT <- LMST - hms(as.numeric(deltaT_LAT))
+
+# This is needed to output LAT in R's time format
+LAT <- hms(as.numeric(LAT))
+
+# Now we can calculate the declination angle using the more precise formulation
+delta2 <- 0.006918 - 0.399912*cos(gamma) + 0.070257*sin(gamma) - 0.006758*cos(2*gamma) + 0.000907*sin(2*gamma) - 0.002697*cos(3*gamma) + 0.00148*sin(3*gamma)
+
+# Note that delta2 is in radians - we need to convert radians to degrees
+delta2deg <- delta2*(180/pi)
+
+# Define latitude. Note that here we use a vector to be able to calculate the solar altitude angle for both days
+latitude <- 45.5019
+
+# Next we can calculate the hour angle (h = 15◦(12 − LAT)) using LAT estimated above. 
+# Note LAT is the local apparent time (see above) in hours of the day (with minutes as a fraction of an hour). This can be calculated using the following:
+LAT2 <- as.numeric(LAT)/60/60 # This converts hh:mm:ss to hour of the day
+
+# Now calculate h
+h <- round(15*(12-LAT2)) # Round the hour angle to the nearest degree using round()
+
+# Now we can calculate the solar altitude angle
+# First calculate sin β - note that we have to convert angles in degrees to radians (multiply degrees by (pi/180))
+sinbeta <- sin(latitude*(pi/180))*sin(delta2deg*(pi/180))+cos(latitude*(pi/180))*cos(delta2deg*(pi/180))*cos(h*(pi/180))
+
+# Next calculate β (*(180/pi) to convert radians to degrees)
+beta <- asin(sinbeta)*(180/pi);
+
+# Display output
+cat("For February 15 at 10:00 β is: ", round(beta,2), intToUtf8(176), "\n") # β is rounded to 2 decimal points (using round() function)
+
+# Define cosZ
+cosZ <- sinbeta 
+
+# Calculate m
+m <- 1/cosZ
+cat("m is equal to: ", round(m,3), "\n")
+
+# Next Calculate the extraterrestrial short-wave irradiance KEx as done in Study Questions for Lecture 4
+# Define the solar constant (I0):
+Io  <- 1366.5 # units of W m−2
+
+# Account for the non-circular orbit (changing distance over course of a year) (note gamma is calculated above)
+ratio2 <- 1.00011 + 0.034221*cos(gamma) + 0.001280*sin(gamma) + 0.000719*cos(2*gamma) + 0.000077*sin(2*gamma)
+
+# Calculate KEx (note that sinbeta is estimated above)
+KEx <- Io*ratio2*sinbeta
+
+cat("For February 15 at 10:00 KEx is: ", round(KEx), "W/m2", "\n")
+
+# Now we can calculate Kdown (with psia the same as above in Q4)
+Kdown <- KEx*(psia)^(m)
+cat("For February 15 at 10:00 Kdown is: ", round(Kdown), "W/m2", "\n")
+
+```
+
