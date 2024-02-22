@@ -1,0 +1,13 @@
+# EBEX 2000, Kettleman City, CA, USA
+# Wind profile measured by cup anemometers
+# Start: 2000/08/11 14:30 PST
+# Average values over 30 min
+# Air temperature: 33.2 deg C
+
+"Height (m)","Horizontal wind velocity (m/s)"
+        0.95,         1.94
+        1.55,         2.33
+        2.35,         2.57
+        3.72,         2.90
+        6.15,         3.29
+        9.05,         3.52
