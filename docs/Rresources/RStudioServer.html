@@ -175,6 +175,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#sign-in" id="toc-sign-in" class="nav-link" data-scroll-target="#sign-in">Sign in</a></li>
   <li><a href="#adding-folders" id="toc-adding-folders" class="nav-link" data-scroll-target="#adding-folders">Adding Folders</a></li>
   <li><a href="#uploading-a-file" id="toc-uploading-a-file" class="nav-link" data-scroll-target="#uploading-a-file">Uploading a File</a></li>
+  <li><a href="#r-markdown-basics-i.e.-how-to-run-your-code" id="toc-r-markdown-basics-i.e.-how-to-run-your-code" class="nav-link" data-scroll-target="#r-markdown-basics-i.e.-how-to-run-your-code">R Markdown basics (i.e., how to run your code)</a></li>
   <li><a href="#downloading-the-output-to-upload-your-file-to-mycourses" id="toc-downloading-the-output-to-upload-your-file-to-mycourses" class="nav-link" data-scroll-target="#downloading-the-output-to-upload-your-file-to-mycourses">Downloading the output to upload your file to myCourses</a></li>
   </ul></li>
   </ul>
@@ -237,6 +238,18 @@ ul.task-list li input[type="checkbox"] {
 <li>Click on the file to open it. You should it see in the upper left window now. You can readjust the size of the windows to better view your code</li>
 </ol>
 </section>
+<section id="r-markdown-basics-i.e.-how-to-run-your-code" class="level3">
+<h3 class="anchored" data-anchor-id="r-markdown-basics-i.e.-how-to-run-your-code">R Markdown basics (i.e., how to run your code)</h3>
+<p>You will be given example R Markdown files for your study questions and assignments. An R Markdown file is a plain text file has the extension .Rmd</p>
+<p>It contains three important types of content:</p>
+<ul>
+<li>An (optional) YAML header surrounded by —s.</li>
+<li>Chunks of R code surrounded by ```.</li>
+<li>Text mixed with simple text formatting like # heading and <em>italics</em>.</li>
+</ul>
+<p>When you open an .Rmd, you get a notebook interface where code and output are interleaved. <strong>You can run each code chunk by clicking the Run icon</strong> (it looks like a play button at the top of the chunk). RStudio executes the code and displays the results inline with the code.</p>
+<p>To produce a complete report containing all text, code, and results, click “Knit”. It will by default knit to html (i.e., create an <strong>html file). This is the format you want to upload to myCourses.</strong></p>
+</section>
 <section id="downloading-the-output-to-upload-your-file-to-mycourses" class="level3">
 <h3 class="anchored" data-anchor-id="downloading-the-output-to-upload-your-file-to-mycourses">Downloading the output to upload your file to myCourses</h3>
 <p>Once you have completed your Study Questions or Assignments, ‘Knit’ your file to generate an ‘html’ file. The output should now appear in the same location/Folder as your .Rmd file (as shown below). <img src="images/html_output.png" class="img-fluid"></p>
@@ -247,19 +260,7 @@ ul.task-list li input[type="checkbox"] {
 <li>Then click on ‘Download’.</li>
 </ol>
 <p>Your file should now be in your Downloads Folder.</p>
-<p><strong>Note</strong>: the graphs on the html file might not load properly on myCourses. Therefore, instead of uploading the html file directly, please print it as a PDF using the following:</p>
-<ol start="4" type="1">
-<li><p>Open the html file in your browser: <img src="images/OpenBrowser.png" class="img-fluid"></p></li>
-<li><p>Then right click to print:</p></li>
-</ol>
-<p><img src="images/Print.png" class="img-fluid"></p>
-<ol start="6" type="1">
-<li>Finally save as PDF:</li>
-</ol>
-<p><img src="images/SavePDF.png" class="img-fluid"></p>
-<p>You can now <strong>upload this PDF file to myCourses</strong>.</p>
-<p><strong>Note:</strong> you can also knit your file as a PDF as shown below and then export the PDF to upload (which should appear in the lower right window next to your other files): <img src="images/Knit_PDF.png" class="img-fluid"></p>
-<p>However, if this gives you an error, try the steps above.</p>
+<p>You can now <strong>upload this PDF file to myCourses</strong>. Note, the graphs on the html file might not load properly on myCourses. Do NOT worry about this - the TA will download the html files so everything should display properly.</p>
 
 
 </section>
