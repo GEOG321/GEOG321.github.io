@@ -366,153 +366,131 @@
     "href": "Rresources/RBasics.html",
     "title": "R Basics",
     "section": "",
-    "text": "Here are some R basics that will help you get started with Study Questions and Assignments.\nMuch of this is adpated from http://www.sthda.com/english/wiki/easy-r-programming-basics\n\nR can be used as a calculator.\nThe basic arithmetic operators are:\n\n+ (addition)\n- (subtraction)\n* (multiplication)\n/ (division)\nand ^ (exponentiation).\n\nType directly the command below in the console:\n\n# Addition\n3 + 7\n\n[1] 10\n\n\n\n# Multiplication\n3 * 7\n\n[1] 21\n\n\n\n\nBasic arithmetic functions\n\nlog2(x) # logarithms base 2 of x\nlog10(x) # logaritms base 10 of x\nexp(x) # Exponential of x\nabs(x) # absolute value of x\nsqrt(x) # square root of x\n\n\n\nAssigning values to variables\nA variable can be used to store a value.\nFor example, the R code below will store the day of year (DOY) in a variable as “DOY”:\n\n# Day of year (DOY) is 1 (i.e., Jan 1st)\nDOY &lt;- 1\n\n# You can also use this notation, but it is more frequent when using R to use the above notation\nDOY = 1\n\nNote that, it’s possible to use &lt;- or = for variable assignments (athough as noted above, &lt;- is more common)\nTo print the value of the created object, just type its name:\n\nDOY\n\n[1] 1\n\n\nor use the function print() (you’ll see later use you use the function cat() to display output):\n\nprint(DOY)\n\n[1] 1\n\n\nYou can also perform basic arithmetic using your variable\n\nDOY + 1\n\n[1] 2\n\n\nYou can change the value of the object:\n\n# Change the value\nDOY &lt;- 365\n# Print again\nDOY\n\n[1] 365\n\n\nYou can also write equations using previously defined variables. The following R code creates two variables including the width and the height of a rectangle. These two variables will be used to compute the area of the rectangle.\n\n# Rectangle height\nheight &lt;- 10\n# rectangle width\nwidth &lt;- 5\n# compute rectangle area\narea &lt;- height*width\nprint(area)\n\n[1] 50\n\n\n\n\nBasic data types\nBasic data types are numeric, character and logical.\n\n# Numeric object: How old are you?\nmy_age &lt;- 28\n# Character  object: What's your name?\nmy_name &lt;- \"Jane\"\n# logical object: Are you a data scientist?\n# (yes/no) &lt;=&gt; (TRUE/FALSE)\nis_datascientist &lt;- TRUE\n\nIt’s possible to use the function class() to see what type a variable is:\n\nclass(my_age)\n\n[1] \"numeric\"\n\n\n\nclass(my_name)\n\n[1] \"character\"\n\n\nYou can also use the functions is.numeric(), is.character(), is.logical() to check whether a variable is numeric, character or logical, respectively. For instance:\n\nis.numeric(my_age)\n\n[1] TRUE\n\n\n\nis.numeric(my_name)\n\n[1] FALSE\n\n\nIf you want to change the type of a variable to another one, use the as.* functions, including: as.numeric(), as.character(), as.logical(), etc.\n\nmy_age\n\n[1] 28\n\n\n\n# Convert my_age to a character variable\nas.character(my_age)\n\n[1] \"28\"\n\n\n\n\nVectors\nA vector is a combination of multiple values (numeric, character or logical) in the same object. In this case, you can have numeric vectors, character vectors or logical vectors.\n\nCreate a vector\nA vector is created using the function c() (for concatenate), as follow:\n\n# Create a vector that includes multiple DOY values\nDOY &lt;- c(1,81,172,365) # the c() function creates a vector\nDOY # This outputs the vector\n\n[1]   1  81 172 365\n\n\nNote: a vector can only hold elements of the same type. For example, you cannot have a vector that contains both characters and numeric values.\nFind the length of a vector (i.e., the number of elements in a vector)\n\n# Create a vector that includes multiple DOY values\nlength(DOY)\n\n[1] 4\n\n\nCase of missing values\nIn R missing values (or missing information) are represented by NA:\n\n# Create a vector that includes multiple DOY values and assume we don't know one of the values\nDOY_with_NA &lt;- c(1,81,NA,365) # note the new variable name as to note overwrite the variable DOY\nDOY_with_NA # This outputs the vector\n\n[1]   1  81  NA 365\n\n\nIt’s possible to use the function is.na() to check whether a data contains missing value. The result of the function is.na() is a logical vector in which, the value TRUE specifies that the corresponding element in x is NA.\n\nis.na(DOY_with_NA)\n\n[1] FALSE FALSE  TRUE FALSE\n\n\n\n\nGet a subset of a vector\nSubsetting a vector consists of selecting a part of your vector.\nSelection by positive indexing: select an element of a vector by its position (index) in square brackets\n\n# Select DOY number 2\nDOY[2]\n\n[1] 81\n\n\n\n# Select DOY number 1 to 3\nDOY[1:3]\n\n[1]   1  81 172\n\n\nSelection by negative indexing: Exclude an element\n\n# Exclude DOY number 2\nDOY[-2]\n\n[1]   1 172 365\n\n\n\n# Exclude DOY number 1 and 3\nDOY[-c(1,3)]\n\n[1]  81 365\n\n\nFor more on subsetting vectors, see here\n\n\n\nCalculations with vectors\nNote that, all the basic arithmetic operators (+, -, *, / and ^ ) as well as the common arithmetic functions (log, exp, sin, cos, tan, sqrt, abs, …), described in the previous sections, can be applied on a numeric vector.\nIf you perform an operation with vectors, the operation will be applied to each element of the vector. An example is provided below:\n\n# The declination angle (defined as delta below) can be estimated using the simplified equation in Topic 4, Slide 7\ndelta &lt;- -23.4*cos(2*pi*(DOY+10)/365)\ndelta\n\n[1] -22.9817392  -0.1007028  23.3991332 -23.0541505\n\n\nOther useful functions are:\n\nmax(x) # Get the maximum value of x\nmin(x) # Get the minimum value of x\n# Get the range of x. Returns a vector containing\n# the minimum and the maximum of x\nrange(x) \n   \nlength(x) # Get the number of elements in x\n  \nsum(x) # Get the total of the elements in x\n  \nprod(x) # Get the product of the elements in x\n \n# The mean value of the elements in x\n# sum(x)/length(x)\nmean(x) \nsd(x) # Standard deviation of x\nvar(x) # Variance of x\n# Sort the element of x in ascending order\nsort(x)\n\n\n\nData frames\nWhen you load a dataset, it will generally be loaded as a data frame (e.g., the datasets you will be loading for your Assignments). However, here are some simple examples to help you get more familiar with data frames.\n\nCreate a data frame\nA data frame can be created using the function data.frame(), as follow:\n\n# Create a data frame\ndf &lt;- data.frame(\n  DOY = c(1,81,172,365),\n  albedo = c(0.4,0.1,0.34,0.9),\n  Qh = c(10,400,350,-40),\n  Qe = c(20,100,500,12)\n)\n# Print\ndf\n\n  DOY albedo  Qh  Qe\n1   1   0.40  10  20\n2  81   0.10 400 100\n3 172   0.34 350 500\n4 365   0.90 -40  12\n\n\nTo check whether a data is a data frame, use the is.data.frame() function. Returns TRUE if the data is a data frame:\n\nis.data.frame(df)\n\n[1] TRUE\n\n\n\n\nSubset a data frame\nTo select just certain columns from a data frame, you can either refer to the columns by name or by their location (i.e., column 1, 2, 3, etc.).\nPositive indexing by name and by location\n\n# Access the data in 'DOY' column\n# dollar sign is used\ndf$DOY\n\n[1]   1  81 172 365\n\n\n\n# or use this\ndf[, 'DOY']\n\n[1]   1  81 172 365\n\n\n\n# Subset columns 1 and 3\ndf[, c(1,3)]\n\n  DOY  Qh\n1   1  10\n2  81 400\n3 172 350\n4 365 -40\n\n\nFor more on subsetting a data frame see here. On this page you can also find more opperations you can perform using data frames.\n\n\nCreatin a few variable in a data frame\nWhile there are multiple ways to create a new variable in a data frame, as simple approach is to add a new variable directly to the data frame by creating a new column and assigning values to it.For example, add a new variable to calculate the Bowen ratio using Qh and Qe (recall the bowen ratio = Qh/Qe).\n\n# to create a new variable called bowen_ratio (not that variable names can't have spaces in them) based on Qh and Qe we would do the following.\ndf$bowen_ratio &lt;- df$Qh/df$Qe\n\n# You can see that this add a new column to your data frame.\nprint(df)\n\n  DOY albedo  Qh  Qe bowen_ratio\n1   1   0.40  10  20    0.500000\n2  81   0.10 400 100    4.000000\n3 172   0.34 350 500    0.700000\n4 365   0.90 -40  12   -3.333333\n\n\n\n\n\nInstalling packages\nNote that while you will not need to install packages when using RStudio Server (since they are pre-installed), this is helpful if you need to install packages using R installed on your own computer.\nTo install an R package, we can use the install.packages() function:\n\ninstall.packages(\"dplyr\")\n\nor you can install multiple packages using\n\ninstall.packages(c(\"dplyr\", \"ggplot2\",\"tidyverse\")\n\nNow when you need to use a package in an Assignment or Study Question, you can call it using\n\nlibrary(dplyr)\n\n\n\nPlotting data\nHere we will use the packe ggplot to create some basic plots.\nUse the R code below:\n\n#### Install and load ggplot2 package\n\n# Installation \ninstall.packages('ggplot2') \n#NOTE: You only need to install a package once. Once it is installed, you can comment it out by adding # in front of it (e.g., # install.packages('ggplot2') )\n\n# Loading the package\nlibrary(ggplot2)\n\n\nData format and preparation\nThe data set mtcars is used in the examples below:\n\n# Load the data\ndata(mtcars)\ndf &lt;- mtcars[, c(\"mpg\", \"cyl\", \"wt\")]\n# Convert cyl to a factor variable\ndf$cyl &lt;- as.factor(df$cyl)\nhead(df)\n\n                   mpg cyl    wt\nMazda RX4         21.0   6 2.620\nMazda RX4 Wag     21.0   6 2.875\nDatsun 710        22.8   4 2.320\nHornet 4 Drive    21.4   6 3.215\nHornet Sportabout 18.7   8 3.440\nValiant           18.1   6 3.460\n\n\nggplot(): build plots piece by piece\nThis section describes briefly how to use the function ggplot(). Recall that, the concept of ggplot divides a plot into three different fundamental parts: plot = data + Aesthetics + geometry.\n\ndata: a data frame.\nAesthetics: used to specify x and y variables, color, size, shape, ….\nGeometry: the type of plots (histogram, boxplot, line, density, dotplot, bar, …)\n\nTo demonstrate how the function ggplot() works, we’ll draw a scatter plot. The function aes() is used to specify aesthetics.\n\n# Basic scatter plot\nggplot(data = mtcars, aes(x = wt, y = mpg)) + \n  geom_point()\n\n\n\n\n\n\n\n# Change the point size, and shape\nggplot(mtcars, aes(x = wt, y = mpg)) +\n  geom_point(size = 2, shape = 23)\n\n\n\n\n\n\n\n\nQuestion: How would you convert this to a line graph? Try asking chatgpt (or equivalent) ;)\n\n\n\nInstructions for Loading Excel and CSV files in R Markdown\n\nUpload the file of interest to the folder of interest (see details in RStudio Server page)\nInstall required packages: Use the following code to install the necessary packages for reading Excel and CSV files:\n\n\n# Note that you only need to install a package once\ninstall.packages(\"readxl\")    \ninstall.packages(\"readr\")     \n\n\nLoad Required Libraries: Include a code chunk in your R Markdown file to load the libraries:\n\n\nlibrary(readxl)\nlibrary(readr)\n\n\nRead an xlsx file: Use the read_excel function from the readxl package. Specify the path to your Excel file:\n\n\n# Example of reading an Excel file\ndata_xlsx &lt;- read_excel(\"path/to/your/file.xlsx\", sheet = 1)\nhead(data_xlsx)  # View the first few rows\n\n\nRead a CSV file: Use the read_csv function from the readr package. Specify the path to your CSV file:\n\n\n# Example of reading a CSV file\ndata_csv &lt;- read_csv(\"path/to/your/file.csv\")\nhead(data_csv)  # View the first few rows\n\nNotes:\n\nReplace “path/to/your/file.xlsx” and “path/to/your/file.csv” with the actual paths to your files.\nIf your file is in the working directory, you can use just the file name instead of the full path.\nFor Excel files with multiple sheets, use the sheet argument in read_excel to specify the sheet name or index.\n\n\n\nHandling Dates in R\nNote: this goes beyond the basics and provides more in depth information on handling of dates in R for those that are curious/interested.\nR has multiple packages to handle dates, including base R, lubridate, and chron. The most commonly used is lubridate (part of the tidyverse).\n\nWorking with dates in base R\n\n\nConvert a string to a date\n\n\n# Using as.Date\ndate1 &lt;- as.Date(\"2025-01-01\") # Output: \"2025-01-01\"\n\n\nSpecify a format\n\n\ndate2 &lt;- as.Date(\"01-01-2025\", format = \"%d-%m-%Y\") # Output: \"2025-01-01\"\n\n\nDate arithmetic\n\n\n# Add or subtract days\ndate1 + 5  # Adds 5 days\ndate1 - 7  # Subtracts 7 days\n\n# Difference between two dates\ndiff &lt;- as.Date(\"2025-01-10\") - date1 # Output: 9 days\n\n\nGet the current date\n\n\nSys.Date()\n\n\nUsing the lubridate package\n\nInstall the package if needed:\n\ninstall.packages(\"lubridate\")\n\n\nParsing dates\n\n\nlibrary(lubridate)\n\n# Automatically detect formats\ndate3 &lt;- ymd(\"20250101\")   # \"2025-01-01\"\ndate4 &lt;- dmy(\"01-01-2025\") # \"2025-01-01\"\n\n\nExtract date components\n\n\nyear(date3)    # 2025\nmonth(date3)   # 1\nday(date3)     # 1\n\n\nWork with time\n\n\ntime &lt;- ymd_hms(\"2025-01-01 10:30:00\")\nhour(time)     # 10\nminute(time)   # 30\nsecond(time)   # 0\n\nCommon date formats\n\n%Y: Year (4 digits, e.g., 2025)\n%y: Year (2 digits, e.g., 25)\n%m: Month (numeric, e.g., 01)\n%B: Month (full name, e.g., January)\n%d: Day of the month (e.g., 01)\n%H: Hour (24-hour clock, e.g., 13)\n%M: Minute\n%S: Second",
+    "text": "Here are some R basics that will help you get started with Study Questions and Assignments.\nMuch of this is adpated from http://www.sthda.com/english/wiki/easy-r-programming-basics",
     "crumbs": [
       "R Resources",
       "R Basics"
     ]
   },
   {
-    "objectID": "studyquestions/QuestionsTopic5.html",
-    "href": "studyquestions/QuestionsTopic5.html",
-    "title": "Topic 5",
-    "section": "",
-    "text": "Study questions\nAnswer key to study questions\n\nSee myCourses for R Markdown template and solutions",
+    "objectID": "Rresources/RBasics.html#instructions-for-loading-excel-and-csv-files-in-r",
+    "href": "Rresources/RBasics.html#instructions-for-loading-excel-and-csv-files-in-r",
+    "title": "R Basics",
+    "section": "Instructions for Loading Excel and CSV Files in R",
+    "text": "Instructions for Loading Excel and CSV Files in R\n(RStudio Server or Your Own Computer — Mac & PC)\nThese instructions apply whether you are working on RStudio Server or using R and RStudio installed on your own computer.\nThe key idea is the same in both cases: keep your files organized and use simple file paths.\n\nStep 1: Organize your files\nBefore writing any code, make sure that: - Your assignment file (.Rmd) - Your data files (.xlsx, .csv) - Any images used in the document\nare all saved in the same folder.\nThis prevents file-path errors and ensures your work runs correctly on different computers and on the RStudio Server.\n\n\nStep 2: Install required packages (one time only)\nPackages only need to be installed once per computer or server account.\nYou should not reinstall packages every time you render your document.\n\n\nStep 3: Load required libraries\nEvery time you start a new session, you must load the packages you are using.\nPlace this code chunk near the top of your .Rmd file.\n\n\nStep 4: Read an Excel (.xlsx) file\nIf your Excel file is in the same folder as your .Rmd, use only the file name.\n\ndata_xlsx &lt;- read_excel(\"my_data.xlsx\", sheet = 1)\nhead(data_xlsx)\n\n# If the Excel file has multiple sheets, you can specify the sheet name instead of the number.\n\ndata_xlsx &lt;- read_excel(\"my_data.xlsx\", sheet = \"Sheet1\")\n\n\n\nStep 5: Read a CSV file\nIf your CSV file is in the same folder as your .Rmd, again use only the file name.\n\ndata_csv &lt;- read_csv(\"my_data.csv\")\nhead(data_csv)\n\n\n\nStep 6: Troubleshooting common errors\nIf you see an error like “file not found” or “cannot open the connection”, check the following:\n\nIs the file uploaded into the same folder as your .Rmd?\nDoes the file name in your code exactly match the file name (including capitalization)?\nDid you move or rename the file after you started working?\n\nFollowing the steps above will prevent most file-loading problems in this course.",
     "crumbs": [
-      "Study Questions",
-      "Topic 5"
+      "R Resources",
+      "R Basics"
     ]
   },
   {
-    "objectID": "studyquestions/QuestionsTopic2.html",
-    "href": "studyquestions/QuestionsTopic2.html",
-    "title": "Topic 2",
-    "section": "",
-    "text": "Study questions\nAnswer key to study questions"
-  },
-  {
-    "objectID": "studyquestions/QuestionsTopic22.html",
-    "href": "studyquestions/QuestionsTopic22.html",
-    "title": "Topic 22",
-    "section": "",
-    "text": "Study questions\nAnswer key to study questions\n\nSee myCourses for R Markdown template and solutions",
+    "objectID": "Rresources/RBasics.html#handling-dates-in-r",
+    "href": "Rresources/RBasics.html#handling-dates-in-r",
+    "title": "R Basics",
+    "section": "Handling Dates in R",
+    "text": "Handling Dates in R\nNote: this goes beyond the basics and provides more in depth information on handling of dates in R for those that are curious/interested.\nR has multiple packages to handle dates, including base R, lubridate, and chron. The most commonly used is lubridate (part of the tidyverse).\n\nWorking with dates in base R\n\n\nConvert a string to a date\n\n\n# Using as.Date\ndate1 &lt;- as.Date(\"2025-01-01\") # Output: \"2025-01-01\"\n\n\nSpecify a format\n\n\ndate2 &lt;- as.Date(\"01-01-2025\", format = \"%d-%m-%Y\") # Output: \"2025-01-01\"\n\n\nDate arithmetic\n\n\n# Add or subtract days\ndate1 + 5  # Adds 5 days\ndate1 - 7  # Subtracts 7 days\n\n# Difference between two dates\ndiff &lt;- as.Date(\"2025-01-10\") - date1 # Output: 9 days\n\n\nGet the current date\n\n\nSys.Date()\n\n\nUsing the lubridate package\n\nInstall the package if needed:\n\ninstall.packages(\"lubridate\")\n\n\nParsing dates\n\n\nlibrary(lubridate)\n\n# Automatically detect formats\ndate3 &lt;- ymd(\"20250101\")   # \"2025-01-01\"\ndate4 &lt;- dmy(\"01-01-2025\") # \"2025-01-01\"\n\n\nExtract date components\n\n\nyear(date3)    # 2025\nmonth(date3)   # 1\nday(date3)     # 1\n\n\nWork with time\n\n\ntime &lt;- ymd_hms(\"2025-01-01 10:30:00\")\nhour(time)     # 10\nminute(time)   # 30\nsecond(time)   # 0\n\nCommon date formats\n\n%Y: Year (4 digits, e.g., 2025)\n%y: Year (2 digits, e.g., 25)\n%m: Month (numeric, e.g., 01)\n%B: Month (full name, e.g., January)\n%d: Day of the month (e.g., 01)\n%H: Hour (24-hour clock, e.g., 13)\n%M: Minute\n%S: Second",
     "crumbs": [
-      "Study Questions",
-      "Topic 22"
+      "R Resources",
+      "R Basics"
     ]
   },
   {
-    "objectID": "studyquestions/QuestionsTopic21.html",
-    "href": "studyquestions/QuestionsTopic21.html",
-    "title": "Topic 21",
+    "objectID": "Rresources/RDesktop.html",
+    "href": "Rresources/RDesktop.html",
+    "title": "Running R on Your Own Computer",
     "section": "",
-    "text": "Study questions\nAnswer key to study questions\n\nSee myCourses for R Markdown template and solutions",
+    "text": "R is the program that does the calculations\nRStudio is the program you open to work with R\n\nBoth are free and must be installed on your computer.",
     "crumbs": [
-      "Study Questions",
-      "Topic 21"
+      "R Resources",
+      "Running R on Your Own Computer"
     ]
   },
   {
-    "objectID": "studyquestions/QuestionsTopic10.html",
-    "href": "studyquestions/QuestionsTopic10.html",
-    "title": "Topic 10",
+    "objectID": "Rresources/RDesktop.html#here-are-instructions-for-downloading-r-and-using-r-on-your-computer",
+    "href": "Rresources/RDesktop.html#here-are-instructions-for-downloading-r-and-using-r-on-your-computer",
+    "title": "Running R on Your Own Computer",
     "section": "",
-    "text": "Study questions\nAnswer key to study questions\n\nSee myCourses for R Markdown template and solutions",
+    "text": "R is the program that does the calculations\nRStudio is the program you open to work with R\n\nBoth are free and must be installed on your computer.",
     "crumbs": [
-      "Study Questions",
-      "Topic 10"
+      "R Resources",
+      "Running R on Your Own Computer"
     ]
   },
   {
-    "objectID": "assignments_summary.html",
-    "href": "assignments_summary.html",
-    "title": "Assignments",
-    "section": "",
-    "text": "To the left you will find instructions for each Assignment. Please refer to the schedule for due dates. Note that sample code for the assignments can be found on myCourses.\nAssignments will be handed on myCourses on the due date. All assignments are required to be labelled with course number, student number, student name and assignment number. Late assignments will be penalized 10% of the actual marks achieved for each (partial) day past 11:59 pm on the due date. Late assignments will not be accepted once graded assignments have been returned to the class (which results in a grade of 0%). Note that you are not required to use R (or other programming languages) for assignments, however, it is encouraged, and I will provide support and resources to help you with that (see Coding resources on the course website). Each assignment is worth 14% of your final grade.\nCollaboration on homework is encouraged. However, you should think about the problems yourself before discussing them with others. Also, write-ups must be done independently. (In practice, this means that it is OK for other people to explain their solutions to you, but you must not be looking at other people’s solutions as you write your own.)",
+    "objectID": "Rresources/RDesktop.html#step-1-install-r",
+    "href": "Rresources/RDesktop.html#step-1-install-r",
+    "title": "Running R on Your Own Computer",
+    "section": "Step 1: Install R",
+    "text": "Step 1: Install R\nR must be installed before RStudio.\n\nGo to:\nhttps://cran.r-project.org/\nClick on your operating system:\n\nWindows: Download R for Windows → base → Download R\nmacOS: Download R for macOS and choose the newest .pkg file\nLinux: Follow the instructions for your system\n\nOpen the downloaded file and follow the installation steps\n(you can accept all default options)",
     "crumbs": [
-      "Assignments"
+      "R Resources",
+      "Running R on Your Own Computer"
     ]
   },
   {
-    "objectID": "assignments/Assignment4.html",
-    "href": "assignments/Assignment4.html",
-    "title": "Assignment 4",
-    "section": "",
-    "text": "Assignment handout\n\nSee myCourses for R Markdown template"
-  },
-  {
-    "objectID": "assignments/Assignment3.html",
-    "href": "assignments/Assignment3.html",
-    "title": "Assignment 3",
-    "section": "",
-    "text": "Assignment handout\nAppendix A3 from Oke\n\nSee myCourses for R Markdown template"
-  },
-  {
-    "objectID": "assignments/Assignment1.html",
-    "href": "assignments/Assignment1.html",
-    "title": "Assignment 1",
-    "section": "",
-    "text": "Assignment handout\n\nSee myCourses for R Markdown template"
-  },
-  {
-    "objectID": "assignments/Assignment2.html",
-    "href": "assignments/Assignment2.html",
-    "title": "Assignment 2",
-    "section": "",
-    "text": "Assignment handout\nAppendix A3\n\nSee myCourses for R Markdown template"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Syllabus",
-    "section": "",
-    "text": "GEOG 321: Winter 2026\n\n\nHow do feedbacks between ecosystems and the atmosphere influence microclimates and the global climate system? In this course we’ll focus on the interactions between the surface, vegetation and atmosphere, and the physical processes governing the transfer of heat, mass and momentum. Through this course you’ll also be exposed to the basic instrumentation and methods used in today’s monitoring and modeling of microscale climate and surface-atmosphere exchange. While this course examines the behaviour of the atmosphere close to the surface, what we cover in this class implications for processes occurring at the scale of a single leaf to the entire planet!\n\n\n\n\n\n\n\nLearning Outcomes\nBy the end of the course you should be able to:\n\nexplain how the surface radiation and energy budget affects the surface climate.\ndescribe important surface characteristics that affect surface radiation and energy budgets and surface microclimates.\nunderstand the basics of turbulence, dispersion and local wind systems in the atmospheric boundary layer and how they are controlled by surface processes.\nprovide examples of key physical, biological and chemical processes that control trace gas, water and energy fluxes between the land surface and the atmosphere.\nprovide examples of how surface-atmosphere interactions respond to environmental change, and how this can create climate feedbacks.\nknow the principles of basic instrumentation, methods and data-analysis (including the use of the R programming language) used for today’s monitoring and modelling of weather and climate in the atmospheric boundary layer.\nanalyze and interpret data from measurement systems that are used to monitor near-surface climate and surface radiation, energy, and greenhouse gas balances.\nexplain how the principles of micrometeorology have practical applications to society.\n\n\n\nYour Instructor\nDr. Sara Knox\n\n\n\n\nPronouns: She/Her/Hers\nEmail: sara.knox@mcgill.ca\nOffice Hours: Mondays 12:00-1:00pm in BH 619 (or via Zoom). Alternative times available by appointment\nBio: I am an Assistant Professor in the Department of Geography. Prior to that I was an Assistant Professor in the Department of Geography at UBC between Jan 2019 & June 2023. I received my BSc in Earth System Science from McGill in 2009, and my PhD in Environmental Science from UC Berkeley in 2019. I am broadly interested in the impacts of climate variability and land-use change on land-atmosphere exchanges of water, energy, and trace gases. I also seek to understand how ecosystem responses to global change can feedback to slow or accelerate future climate change. My research and training is in micrometeorology, hydrology, and ecosystem ecology. I focus on biosphere-atmosphere interactions in a variety of climates and ecosystems.\n\n\n\n\nTAs and TA office hours\nYour TAs for the class are Steffy Velosa (steffy.velosa@mcgill.ca) & Hugo Baraer (hugo.baraer@mcgill.ca).\nThey will hold two office hours per assignment to assist you with each assignment. Details will be posted shortly.\n\n\nInstructional methods\nThe course consists of two 80-minute lectures each week and one lab visits covering 32 topics, directed readings, assignments, study questions, a midterm during the semester and a final during the exam period.\nLectures will be held in-person. Note that if you do not attend lecture, you will not receive participation marks for that day, however, each student can miss up to three lectures without it impacting their participation grade. If you miss a lecture due to medical or other reasons, please reach out to me if you have questions regarding the material covered in class that day. If you miss more than 3 lectures, contact me regarding your absences and we can assess potential accommodations.\n\n\nCommunication Guidelines\n\nAnnouncements\nNew announcements will be posted regularly on myCourses to keep you informed of logistics and any important course updates. Please make sure to check frequently.\n\n\nEmail\nWhile I encourage you to post course content related questions in the Discussion Forums (see below), for private communication, use email. Please put the course ID {GEOG 321} on the subject line. Emails are typically answered within 24-48 hours during regular business hours (M-F 9am-5pm). When addressing me in your email, you can refer to me as either Sara, Dr. Knox or Prof. Knox. Remember that email is a formal and public method of communication. Do not write anything that you do not want on the permanent, public record.\n\n\nCourse Logistics Q & A Forum\nUse this forum to ask logistical questions about the course or report any problems you encounter. Your classmates may have the same question. Students are encouraged to respond to questions and help each other!\nThe TAs and I will check this Forum every few days.\n\n\nOther Discussion Forums\nDiscussion Forums are available for any questions related to assignments and study questions as well as the lecture material. As noted above, your classmates may have the same question. Students are encouraged to respond to questions and help each other!\n\n\n\nRequired course materials\nThe readings are posted on the course website. They consist of draft chapters from the textbook ‘Boundary Layer Climates’ by T. R. Oke and a few other sources.\n\n\nCourse content\n\n\n\n\nTable 1: Schedule for lectures, readings and assignments. Note: All dates and topics are still subject to change. Please make sure to regularly check the website for updates to the schedule. Slides will be visible in advance of lecture dates for those who might like to look ahead. However, materials are subject to change until the date of the lecture.\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek\nDate\nDescription\nCourse materials\nAssignments\n\n\n\n\n1\n05-Jan\n1 Introduction and course overview\nReading Package Lectures 1-2\n\n\n\n\n07-Jan\n2 Energy and mass balances3 Surface energy balance\nReading Package Lectures 1-2Reading Package Lecture 3\n\n\n\n2\n12-Jan\n4 Radiation geometry and ‘sun-paths’\nReading Package Lectures 4-5\nStudy Questions - Topic 4 (due Jan 26)\n\n\n\n14-Jan\n5 Short-wave radiative transfer6 Short-wave reflection and albedo (intro.)\nReading Package Lectures 4-5Reading Package Lecture 6\nStudy Questions - Topic 5 (due Jan 26)\n\n\n3\n19-Jan\n6 Short-wave reflection and albedo (cont.)Tutorial: Intro to R\n\nAssignment 1 handed out\n\n\n\n21-Jan\n7 Long-wave radiation and emissivity8 Net all-wave radiation (intro.)\n\n\n\n\n4\n26-Jan\n8 Net all-wave radiation (cont.)9 Virtual field site visit (Radiation instrumentation)\nReading Package Lecture 9\n\n\n\n\n28-Jan\n10 Soil thermal properties11 Soil heat transfer (intro.)\nReading Package Lectures 10-12\nStudy Questions - Topic 10 (due Feb 09)\n\n\n5\n02-Feb\n11 Soil heat transfer (cont.)12 Modelling sub-surface temperatures Recorded Lecture - No Class\nReading Package Lectures 10-12\nStudy Questions - Topic 11 (due Feb 11)Study Questions - Topic 12 (due Feb 11)\n\n\n\n04-Feb\nClass cancelled\n\n\n\n\n6\n09-Feb\n15 Laminar and turbulent flow16 Production of atmospheric turbulence (intro.)\nReading Package Lecture 15Reading Package Lectures 16-17\n\n\n\n\n11-Feb\n16 Production of atmospheric turbulence (cont.)17 Dissipation of atmospheric turbulence\nReading Package Lectures 16-17\n\n\n\n8\n16-Feb\n18 Turbulence statistically approached\nReading Package Lecture 18\nAssignment 1 dueStudy Questions - Topic 18 (due Feb 25)\n\n\n\n18-Feb\n19 Momentum transfer\nReading Package Lectures 19-20\n\n\n\n9\n23-Feb\nMidterm review\nReading Package Lectures 19-20\nAssignment 2 handed out\n\n\n\n25-Feb\nMidterm Examination\n\n\n\n\n\n02-Mar\nWinter Reading Break\n\n\n\n\n\n04-Mar\nWinter Reading Break\n\n\n\n\n10\n09-Mar\n20 Velocity profile laws\nReading Package Lectures 19-20\n\n\n\n\n11-Mar\n21 Flux-gradient relations22 Eddy covariance (intro.)\nReading Package Lectures 21-26\nStudy Questions - Topic 21 (due Mar 25)Study Questions - Topic 22 (due Mar 30)\n\n\n11\n16-Mar\n22 Eddy covariance (cont.)23 Dynamic stability (intro.)\nReading Package Lectures 21-26\nStudy Questions - Topic 23 (due Apr 01)\n\n\n\n18-Mar\n23 Dynamic stability (cont.)24 Turbulent exchange in non-neutral situations\nReading Package Lectures 21-26\n\n\n\n12\n23-Mar\n25 Lab visit (Eddy covariance system, trace gas measurements)\nReading Package Lectures 21-26\n\n\n\n\n25-Mar\n26 Convective and stable boundary layers27 Surface heterogeneity and advection\nReading Package Lectures 21-26Reading Package Lecture 27\nAssignment 2 due\n\n\n13\n30-Mar\n29 The water cycle at land-atmosphere interfaces30 Plant-atmosphere interactions (intro.)\nReading Package Lectures 29-31\nAssignment 3 handed out\n\n\n\n01-Apr\n30 Plant-atmosphere interactions (cont.)31 Measuring and modeling evapotranspiration\nReading Package Lectures 29-31\n\n\n\n14\n06-Apr\nNo class (Easter Monday)\n\n\n\n\n\n09-Apr\n32 Land atmosphere interactions in a changing global climate\nReading Package Lectures 29-31\n\n\n\n15\n13-Apr\nFinal class: Review/evaluation/exam instructions\n\nAssignment 3 due\n\n\n\n\n\n\n\n\n\n\nEvaluation\n\n\n\n\n\n\n\n\n\nParticipation\n4%\n\n\nSelf-study questions\n4%\n\n\nWritten assignments 3)\n42%\n\n\nMid-term exam\n20%\n\n\nFinal exam\n30%\n\n\n\n\n\nYou will receive Participation marks for answering Vevox questions during lectures. Note that you do not need to have the correct answer to receive full marks, you just need to submit an answer to the questions during the lecture. You are also strongly encouraged to engage in all discussion questions on Vevox.\nAssignments will be handed on myCourses on the due date. All assignments are required to be labelled with course number, student number, student name and assignment number. Late assignments will be penalized 10% of the actual marks achieved for each (partial) day past 11:59 pm on the due date. Late assignments will not be accepted once graded assignments have been returned to the class (which results in a grade of 0%). Note that you are not required to use R (or other programming languages) for assignments, however, it is encouraged, and I will provide support and resources to help you with that (see Coding resources on the course website). Each assignment is worth 14% of your final grade.\nCollaboration on homework is encouraged. However, you should think about the problems yourself before discussing them with others. Also, write-ups must be done independently. (In practice, this means that it is OK for other people to explain their solutions to you, but you must not be looking at other people’s solutions as you write your own.)\nSelf-study questions questions are assigned regularly throughout the semester (9 in total). These are a great opportunity for you to apply some of the concepts covered in class and will help prepare you for assignments and exams. It is also a helpful way for you to learn R if that is of interest to you. Note that while solutions to the self-study questions are available to you, you are required to upload your own answers to these questions on myCourses (either as a word document, pdf, or html file). To help you keep up with the course material, you will have a week to upload your answers to myCourses (note that they are due at 11:59pm ET on that day). You only need to complete 7/9 to receive full marks for the self-study questions (4% of your total grade). Note that late study questions will receive a grade of zero. All self-study questions and their due dates are already posted under Assignments.\nThe mid-term exam will be a closed-book, in-person exam on Wednesday, February 29th during class. More details on the mid-term exam can be found on the course website\nThe final exam will be held during the final exam period. It will also be a closed-book, in-person exam. The duration of the final is 3 hours (180 minutes). Additional details on the final exam will be posted on the course website.\nNote: Illness and extenuating circumstances can happen and may be legitimate reasons for extensions on assignments or postponement of exams. If there are reasons you are unable to meet a deadline be sure to discuss with me well in advance if possible. You must be prepared to provide confirmation of illness.\n\n\nAcademic integrity\nMcGill University values academic integrity. Therefore, all students must understand the meaning and consequences of cheating, plagiarism and other academic offences under the Code of Student Conduct and Disciplinary Procedures” (Approved by Senate on 29 January 2003) (See McGill’s guide to academic honesty for more information).\n\n\nOther statements\nPlease see the full course syllabus.\n\n\nStrategies for Success\nBe proactive!\n\nKeep track of deadlines & note the late submission policies\n\nTimely communication is important! If you have an issue, please bring it to my attention.\nPartial credit is better than no credit. If you can’t finish a lab before the deadline - just submit what you’ve got done already.\n\nDrop by office hours & ask questions!",
+    "objectID": "Rresources/RDesktop.html#step-2-install-rstudio",
+    "href": "Rresources/RDesktop.html#step-2-install-rstudio",
+    "title": "Running R on Your Own Computer",
+    "section": "Step 2: Install RStudio",
+    "text": "Step 2: Install RStudio\nRStudio is the program you will use every time you work on assignments.\n\nGo to:\nhttps://posit.co/download/rstudio-desktop/\nDownload RStudio Desktop (Free)\nOpen the installer and follow the steps\nOpen RStudio when installation is complete\n\nYour screen should look similar to this:",
     "crumbs": [
-      "Syllabus"
+      "R Resources",
+      "Running R on Your Own Computer"
     ]
   },
   {
-    "objectID": "studyquestions/QuestionsTopic12.html",
-    "href": "studyquestions/QuestionsTopic12.html",
-    "title": "Topic 12",
-    "section": "",
-    "text": "Study questions\nAnswer key to study questions\n\nSee myCourses for R Markdown template and solutions",
+    "objectID": "Rresources/RDesktop.html#step-3-create-a-folder-for-the-course",
+    "href": "Rresources/RDesktop.html#step-3-create-a-folder-for-the-course",
+    "title": "Running R on Your Own Computer",
+    "section": "Step 3: Create a Folder for the Course",
+    "text": "Step 3: Create a Folder for the Course\nYou should keep all course files in one place.\n\nIn RStudio, look at the Files panel (bottom right)\nClick New Folder\n\nName the folder GEOG321 and click OK",
     "crumbs": [
-      "Study Questions",
-      "Topic 12"
+      "R Resources",
+      "Running R on Your Own Computer"
     ]
   },
   {
-    "objectID": "studyquestions/QuestionsTopic11.html",
-    "href": "studyquestions/QuestionsTopic11.html",
-    "title": "Topic 11",
-    "section": "",
-    "text": "Study questions\nAnswer key to study questions\n\nSee myCourses for R Markdown template and solutions",
+    "objectID": "Rresources/RDesktop.html#step-4-open-or-create-files",
+    "href": "Rresources/RDesktop.html#step-4-open-or-create-files",
+    "title": "Running R on Your Own Computer",
+    "section": "Step 4: Open or Create Files",
+    "text": "Step 4: Open or Create Files\n\nOpening a File\nIf you are given a file for an assignment:\n\nClick Upload\n\nClick Choose File\n\nFind the file on your computer and click Open\n\nThe file will appear in the Files panel. Click it to open.\n\n\n\nCreating a New File\nTo make a new file:\n\nClick File → New File\nChoose R Script or R Markdown\n\n\nMost of the time, you will use files that are already prepared for you.",
     "crumbs": [
-      "Study Questions",
-      "Topic 11"
+      "R Resources",
+      "Running R on Your Own Computer"
     ]
   },
   {
-    "objectID": "studyquestions/QuestionsTopic23.html",
-    "href": "studyquestions/QuestionsTopic23.html",
-    "title": "Topic 23",
-    "section": "",
-    "text": "Study questions\nAnswer key to study questions\n\nSee myCourses for R Markdown template and solutions",
+    "objectID": "Rresources/RDesktop.html#r-markdown-running-your-code",
+    "href": "Rresources/RDesktop.html#r-markdown-running-your-code",
+    "title": "Running R on Your Own Computer",
+    "section": "R Markdown: Running Your Code",
+    "text": "R Markdown: Running Your Code\nMost assignments will use R Markdown (.Rmd) files.\nAn R Markdown file contains: - Text (instructions and answers) - Code (inside gray boxes called code chunks) - Output (plots, tables, numbers)\n\nRunning Code\n\nClick the Run button (▶) at the top of a code chunk\nThe result will appear below the code\n\n\n\nCreating Your Final File\nWhen you are finished:\n\nClick Knit\nAn HTML file will be created automatically\n\nThis is the file you submit to myCourses.",
     "crumbs": [
-      "Study Questions",
-      "Topic 23"
+      "R Resources",
+      "Running R on Your Own Computer"
     ]
   },
   {
-    "objectID": "studyquestions/QuestionsTopic18.html",
-    "href": "studyquestions/QuestionsTopic18.html",
-    "title": "Topic 18",
-    "section": "",
-    "text": "Study questions\nAnswer key to study questions\n\nSee myCourses for R Markdown template and solutions",
+    "objectID": "Rresources/RDesktop.html#submitting-to-mycourses",
+    "href": "Rresources/RDesktop.html#submitting-to-mycourses",
+    "title": "Running R on Your Own Computer",
+    "section": "Submitting to myCourses",
+    "text": "Submitting to myCourses\nUpload the HTML file (not the .Rmd file) to myCourses.\nNote: Sometimes graphs do not display inside myCourses. This is normal.\nThe TA will download your file and everything will display correctly.",
     "crumbs": [
-      "Study Questions",
-      "Topic 18"
+      "R Resources",
+      "Running R on Your Own Computer"
+    ]
+  },
+  {
+    "objectID": "Rresources/RDesktop.html#common-installation-problems",
+    "href": "Rresources/RDesktop.html#common-installation-problems",
+    "title": "Running R on Your Own Computer",
+    "section": "Common Installation Problems",
+    "text": "Common Installation Problems\n\nRStudio opens but R does not run\n\nMake sure R is installed first\nRestart your computer\nReopen RStudio\n\n\n\nRStudio says it cannot find R\n\nR was not installed correctly\nReinstall R from https://cran.r-project.org/\nThen reopen RStudio\n\n\n\nmacOS: “Developer cannot be verified”\n\nGo to System Settings → Privacy & Security\nClick Open Anyway\nContinue with the installation\n\n\n\nStill having problems?\n\nBring your laptop to office hours",
+    "crumbs": [
+      "R Resources",
+      "Running R on Your Own Computer"
     ]
   },
   {
@@ -527,11 +505,154 @@
     ]
   },
   {
+    "objectID": "studyquestions/QuestionsTopic18.html",
+    "href": "studyquestions/QuestionsTopic18.html",
+    "title": "Topic 18",
+    "section": "",
+    "text": "Study questions\nAnswer key to study questions\n\nSee myCourses for R Markdown template and solutions",
+    "crumbs": [
+      "Study Questions",
+      "Topic 18"
+    ]
+  },
+  {
+    "objectID": "studyquestions/QuestionsTopic23.html",
+    "href": "studyquestions/QuestionsTopic23.html",
+    "title": "Topic 23",
+    "section": "",
+    "text": "Study questions\nAnswer key to study questions\n\nSee myCourses for R Markdown template and solutions",
+    "crumbs": [
+      "Study Questions",
+      "Topic 23"
+    ]
+  },
+  {
+    "objectID": "studyquestions/QuestionsTopic11.html",
+    "href": "studyquestions/QuestionsTopic11.html",
+    "title": "Topic 11",
+    "section": "",
+    "text": "Study questions\nAnswer key to study questions\n\nSee myCourses for R Markdown template and solutions",
+    "crumbs": [
+      "Study Questions",
+      "Topic 11"
+    ]
+  },
+  {
+    "objectID": "studyquestions/QuestionsTopic12.html",
+    "href": "studyquestions/QuestionsTopic12.html",
+    "title": "Topic 12",
+    "section": "",
+    "text": "Study questions\nAnswer key to study questions\n\nSee myCourses for R Markdown template and solutions",
+    "crumbs": [
+      "Study Questions",
+      "Topic 12"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Syllabus",
+    "section": "",
+    "text": "GEOG 321: Winter 2026\n\n\nHow do feedbacks between ecosystems and the atmosphere influence microclimates and the global climate system? In this course we’ll focus on the interactions between the surface, vegetation and atmosphere, and the physical processes governing the transfer of heat, mass and momentum. Through this course you’ll also be exposed to the basic instrumentation and methods used in today’s monitoring and modeling of microscale climate and surface-atmosphere exchange. While this course examines the behaviour of the atmosphere close to the surface, what we cover in this class implications for processes occurring at the scale of a single leaf to the entire planet!\n\n\n\n\n\n\n\nLearning Outcomes\nBy the end of the course you should be able to:\n\nexplain how the surface radiation and energy budget affects the surface climate.\ndescribe important surface characteristics that affect surface radiation and energy budgets and surface microclimates.\nunderstand the basics of turbulence, dispersion and local wind systems in the atmospheric boundary layer and how they are controlled by surface processes.\nprovide examples of key physical, biological and chemical processes that control trace gas, water and energy fluxes between the land surface and the atmosphere.\nprovide examples of how surface-atmosphere interactions respond to environmental change, and how this can create climate feedbacks.\nknow the principles of basic instrumentation, methods and data-analysis (including the use of the R programming language) used for today’s monitoring and modelling of weather and climate in the atmospheric boundary layer.\nanalyze and interpret data from measurement systems that are used to monitor near-surface climate and surface radiation, energy, and greenhouse gas balances.\nexplain how the principles of micrometeorology have practical applications to society.\n\n\n\nYour Instructor\nDr. Sara Knox\n\n\n\n\nPronouns: She/Her/Hers\nEmail: sara.knox@mcgill.ca\nOffice Hours: Mondays 12:00-1:00pm in BH 619 (or via Zoom). Alternative times available by appointment\nBio: I am an Assistant Professor in the Department of Geography. Prior to that I was an Assistant Professor in the Department of Geography at UBC between Jan 2019 & June 2023. I received my BSc in Earth System Science from McGill in 2009, and my PhD in Environmental Science from UC Berkeley in 2019. I am broadly interested in the impacts of climate variability and land-use change on land-atmosphere exchanges of water, energy, and trace gases. I also seek to understand how ecosystem responses to global change can feedback to slow or accelerate future climate change. My research and training is in micrometeorology, hydrology, and ecosystem ecology. I focus on biosphere-atmosphere interactions in a variety of climates and ecosystems.\n\n\n\n\nTAs and TA office hours\nYour TAs for the class are Steffy Velosa (steffy.velosa@mcgill.ca) & Hugo Baraer (hugo.baraer@mcgill.ca).\nThey will hold two office hours per assignment to assist you with each assignment. Details will be posted shortly.\n\n\nInstructional methods\nThe course consists of two 80-minute lectures each week and one lab visits covering 32 topics, directed readings, assignments, study questions, a midterm during the semester and a final during the exam period.\nLectures will be held in-person. Note that if you do not attend lecture, you will not receive participation marks for that day, however, each student can miss up to three lectures without it impacting their participation grade. If you miss a lecture due to medical or other reasons, please reach out to me if you have questions regarding the material covered in class that day. If you miss more than 3 lectures, contact me regarding your absences and we can assess potential accommodations.\n\n\nCommunication Guidelines\n\nAnnouncements\nNew announcements will be posted regularly on myCourses to keep you informed of logistics and any important course updates. Please make sure to check frequently.\n\n\nEmail\nWhile I encourage you to post course content related questions in the Discussion Forums (see below), for private communication, use email. Please put the course ID {GEOG 321} on the subject line. Emails are typically answered within 24-48 hours during regular business hours (M-F 9am-5pm). When addressing me in your email, you can refer to me as either Sara, Dr. Knox or Prof. Knox. Remember that email is a formal and public method of communication. Do not write anything that you do not want on the permanent, public record.\n\n\nCourse Logistics Q & A Forum\nUse this forum to ask logistical questions about the course or report any problems you encounter. Your classmates may have the same question. Students are encouraged to respond to questions and help each other!\nThe TAs and I will check this Forum every few days.\n\n\nOther Discussion Forums\nDiscussion Forums are available for any questions related to assignments and study questions as well as the lecture material. As noted above, your classmates may have the same question. Students are encouraged to respond to questions and help each other!\n\n\n\nRequired course materials\nThe readings are posted on the course website. They consist of draft chapters from the textbook ‘Boundary Layer Climates’ by T. R. Oke and a few other sources.\n\n\nCourse content\n\n\n\n\nTable 1: Schedule for lectures, readings and assignments. Note: All dates and topics are still subject to change. Please make sure to regularly check the website for updates to the schedule. Slides will be visible in advance of lecture dates for those who might like to look ahead. However, materials are subject to change until the date of the lecture.\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek\nDate\nDescription\nCourse materials\nAssignments\n\n\n\n\n1\n05-Jan\n1 Introduction and course overview\nReading Package Lectures 1-2\n\n\n\n\n07-Jan\n2 Energy and mass balances3 Surface energy balance\nReading Package Lectures 1-2Reading Package Lecture 3\n\n\n\n2\n12-Jan\n4 Radiation geometry and ‘sun-paths’\nReading Package Lectures 4-5\nStudy Questions - Topic 4 (due Jan 26)\n\n\n\n14-Jan\n5 Short-wave radiative transfer6 Short-wave reflection and albedo (intro.)\nReading Package Lectures 4-5Reading Package Lecture 6\nStudy Questions - Topic 5 (due Jan 26)\n\n\n3\n19-Jan\n6 Short-wave reflection and albedo (cont.)Tutorial: Intro to R\n\nAssignment 1 handed out\n\n\n\n21-Jan\n7 Long-wave radiation and emissivity8 Net all-wave radiation (intro.)\n\n\n\n\n4\n26-Jan\n8 Net all-wave radiation (cont.)9 Virtual field site visit (Radiation instrumentation)\nReading Package Lecture 9\n\n\n\n\n28-Jan\n10 Soil thermal properties11 Soil heat transfer (intro.)\nReading Package Lectures 10-12\nStudy Questions - Topic 10 (due Feb 09)\n\n\n5\n02-Feb\n11 Soil heat transfer (cont.)12 Modelling sub-surface temperatures Recorded Lecture - No Class\nReading Package Lectures 10-12\nStudy Questions - Topic 11 (due Feb 11)Study Questions - Topic 12 (due Feb 11)\n\n\n\n04-Feb\nClass cancelled\n\n\n\n\n6\n09-Feb\n15 Laminar and turbulent flow16 Production of atmospheric turbulence (intro.)\nReading Package Lecture 15Reading Package Lectures 16-17\n\n\n\n\n11-Feb\n16 Production of atmospheric turbulence (cont.)17 Dissipation of atmospheric turbulence\nReading Package Lectures 16-17\n\n\n\n8\n16-Feb\n18 Turbulence statistically approached\nReading Package Lecture 18\nAssignment 1 dueStudy Questions - Topic 18 (due Feb 25)\n\n\n\n18-Feb\n19 Momentum transfer\nReading Package Lectures 19-20\n\n\n\n9\n23-Feb\nMidterm review\nReading Package Lectures 19-20\nAssignment 2 handed out\n\n\n\n25-Feb\nMidterm Examination\n\n\n\n\n\n02-Mar\nWinter Reading Break\n\n\n\n\n\n04-Mar\nWinter Reading Break\n\n\n\n\n10\n09-Mar\n20 Velocity profile laws\nReading Package Lectures 19-20\n\n\n\n\n11-Mar\n21 Flux-gradient relations22 Eddy covariance (intro.)\nReading Package Lectures 21-26\nStudy Questions - Topic 21 (due Mar 25)Study Questions - Topic 22 (due Mar 30)\n\n\n11\n16-Mar\n22 Eddy covariance (cont.)23 Dynamic stability (intro.)\nReading Package Lectures 21-26\nStudy Questions - Topic 23 (due Apr 01)\n\n\n\n18-Mar\n23 Dynamic stability (cont.)24 Turbulent exchange in non-neutral situations\nReading Package Lectures 21-26\n\n\n\n12\n23-Mar\n25 Lab visit (Eddy covariance system, trace gas measurements)\nReading Package Lectures 21-26\n\n\n\n\n25-Mar\n26 Convective and stable boundary layers27 Surface heterogeneity and advection\nReading Package Lectures 21-26Reading Package Lecture 27\nAssignment 2 due\n\n\n13\n30-Mar\n29 The water cycle at land-atmosphere interfaces30 Plant-atmosphere interactions (intro.)\nReading Package Lectures 29-31\nAssignment 3 handed out\n\n\n\n01-Apr\n30 Plant-atmosphere interactions (cont.)31 Measuring and modeling evapotranspiration\nReading Package Lectures 29-31\n\n\n\n14\n06-Apr\nNo class (Easter Monday)\n\n\n\n\n\n09-Apr\n32 Land atmosphere interactions in a changing global climate\nReading Package Lectures 29-31\n\n\n\n15\n13-Apr\nFinal class: Review/evaluation/exam instructions\n\nAssignment 3 due\n\n\n\n\n\n\n\n\n\n\nEvaluation\n\n\n\n\n\n\n\n\n\nParticipation\n4%\n\n\nSelf-study questions\n4%\n\n\nWritten assignments 3)\n42%\n\n\nMid-term exam\n20%\n\n\nFinal exam\n30%\n\n\n\n\n\nYou will receive Participation marks for answering Vevox questions during lectures. Note that you do not need to have the correct answer to receive full marks, you just need to submit an answer to the questions during the lecture. You are also strongly encouraged to engage in all discussion questions on Vevox.\nAssignments will be handed on myCourses on the due date. All assignments are required to be labelled with course number, student number, student name and assignment number. Late assignments will be penalized 10% of the actual marks achieved for each (partial) day past 11:59 pm on the due date. Late assignments will not be accepted once graded assignments have been returned to the class (which results in a grade of 0%). Note that you are not required to use R (or other programming languages) for assignments, however, it is encouraged, and I will provide support and resources to help you with that (see Coding resources on the course website). Each assignment is worth 14% of your final grade.\nCollaboration on homework is encouraged. However, you should think about the problems yourself before discussing them with others. Also, write-ups must be done independently. (In practice, this means that it is OK for other people to explain their solutions to you, but you must not be looking at other people’s solutions as you write your own.)\nSelf-study questions questions are assigned regularly throughout the semester (9 in total). These are a great opportunity for you to apply some of the concepts covered in class and will help prepare you for assignments and exams. It is also a helpful way for you to learn R if that is of interest to you. Note that while solutions to the self-study questions are available to you, you are required to upload your own answers to these questions on myCourses (either as a word document, pdf, or html file). To help you keep up with the course material, you will have a week to upload your answers to myCourses (note that they are due at 11:59pm ET on that day). You only need to complete 7/9 to receive full marks for the self-study questions (4% of your total grade). Note that late study questions will receive a grade of zero. All self-study questions and their due dates are already posted under Assignments.\nThe mid-term exam will be a closed-book, in-person exam on Wednesday, February 29th during class. More details on the mid-term exam can be found on the course website\nThe final exam will be held during the final exam period. It will also be a closed-book, in-person exam. The duration of the final is 3 hours (180 minutes). Additional details on the final exam will be posted on the course website.\nNote: Illness and extenuating circumstances can happen and may be legitimate reasons for extensions on assignments or postponement of exams. If there are reasons you are unable to meet a deadline be sure to discuss with me well in advance if possible. You must be prepared to provide confirmation of illness.\n\n\nAcademic integrity\nMcGill University values academic integrity. Therefore, all students must understand the meaning and consequences of cheating, plagiarism and other academic offences under the Code of Student Conduct and Disciplinary Procedures” (Approved by Senate on 29 January 2003) (See McGill’s guide to academic honesty for more information).\n\n\nOther statements\nPlease see the full course syllabus.\n\n\nStrategies for Success\nBe proactive!\n\nKeep track of deadlines & note the late submission policies\n\nTimely communication is important! If you have an issue, please bring it to my attention.\nPartial credit is better than no credit. If you can’t finish a lab before the deadline - just submit what you’ve got done already.\n\nDrop by office hours & ask questions!",
+    "crumbs": [
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "assignments/Assignment2.html",
+    "href": "assignments/Assignment2.html",
+    "title": "Assignment 2",
+    "section": "",
+    "text": "Assignment handout\nAppendix A3\n\nSee myCourses for R Markdown template"
+  },
+  {
+    "objectID": "assignments/Assignment1.html",
+    "href": "assignments/Assignment1.html",
+    "title": "Assignment 1",
+    "section": "",
+    "text": "Assignment handout\n\nSee myCourses for R Markdown template"
+  },
+  {
+    "objectID": "assignments/Assignment3.html",
+    "href": "assignments/Assignment3.html",
+    "title": "Assignment 3",
+    "section": "",
+    "text": "Assignment handout\nAppendix A3 from Oke\n\nSee myCourses for R Markdown template"
+  },
+  {
+    "objectID": "assignments/Assignment4.html",
+    "href": "assignments/Assignment4.html",
+    "title": "Assignment 4",
+    "section": "",
+    "text": "Assignment handout\n\nSee myCourses for R Markdown template"
+  },
+  {
+    "objectID": "assignments_summary.html",
+    "href": "assignments_summary.html",
+    "title": "Assignments",
+    "section": "",
+    "text": "To the left you will find instructions for each Assignment. Please refer to the schedule for due dates. Note that sample code for the assignments can be found on myCourses.\nAssignments will be handed on myCourses on the due date. All assignments are required to be labelled with course number, student number, student name and assignment number. Late assignments will be penalized 10% of the actual marks achieved for each (partial) day past 11:59 pm on the due date. Late assignments will not be accepted once graded assignments have been returned to the class (which results in a grade of 0%). Note that you are not required to use R (or other programming languages) for assignments, however, it is encouraged, and I will provide support and resources to help you with that (see Coding resources on the course website). Each assignment is worth 14% of your final grade.\nCollaboration on homework is encouraged. However, you should think about the problems yourself before discussing them with others. Also, write-ups must be done independently. (In practice, this means that it is OK for other people to explain their solutions to you, but you must not be looking at other people’s solutions as you write your own.)",
+    "crumbs": [
+      "Assignments"
+    ]
+  },
+  {
+    "objectID": "studyquestions/QuestionsTopic10.html",
+    "href": "studyquestions/QuestionsTopic10.html",
+    "title": "Topic 10",
+    "section": "",
+    "text": "Study questions\nAnswer key to study questions\n\nSee myCourses for R Markdown template and solutions",
+    "crumbs": [
+      "Study Questions",
+      "Topic 10"
+    ]
+  },
+  {
+    "objectID": "studyquestions/QuestionsTopic21.html",
+    "href": "studyquestions/QuestionsTopic21.html",
+    "title": "Topic 21",
+    "section": "",
+    "text": "Study questions\nAnswer key to study questions\n\nSee myCourses for R Markdown template and solutions",
+    "crumbs": [
+      "Study Questions",
+      "Topic 21"
+    ]
+  },
+  {
+    "objectID": "studyquestions/QuestionsTopic22.html",
+    "href": "studyquestions/QuestionsTopic22.html",
+    "title": "Topic 22",
+    "section": "",
+    "text": "Study questions\nAnswer key to study questions\n\nSee myCourses for R Markdown template and solutions",
+    "crumbs": [
+      "Study Questions",
+      "Topic 22"
+    ]
+  },
+  {
+    "objectID": "studyquestions/QuestionsTopic2.html",
+    "href": "studyquestions/QuestionsTopic2.html",
+    "title": "Topic 2",
+    "section": "",
+    "text": "Study questions\nAnswer key to study questions"
+  },
+  {
+    "objectID": "studyquestions/QuestionsTopic5.html",
+    "href": "studyquestions/QuestionsTopic5.html",
+    "title": "Topic 5",
+    "section": "",
+    "text": "Study questions\nAnswer key to study questions\n\nSee myCourses for R Markdown template and solutions",
+    "crumbs": [
+      "Study Questions",
+      "Topic 5"
+    ]
+  },
+  {
     "objectID": "Rresources/RStudioServer.html",
     "href": "Rresources/RStudioServer.html",
     "title": "RStudio Server",
     "section": "",
-    "text": "This will avoid you having to download R and RStudio on your computer.\nHowever, if you wish to download R & RStudio on your personnal computer, you can find instructions here\n\n\n\nGo to https://rstudio.geog.mcgill.ca\nLogin with your McGill credentials\n\nYour window should now look like this:\n\n\n\n\nFirst you will want to create a new folder for the course.\n\nIn the lower right window, click on ‘New Folder’ \nEnter ‘GEOG321’ as the folder name then click ‘OK’  ### Creating a new File\n\nTo create a new file, in the top left click on File &gt; New File. Then select the file of your choice. This is shown in the figure below.  For this course we will primarily be using R Scripts or R Markdown files. However, you will rarely have to create a script/file from scratch as templates will be handed out for Study Questions and Assignments. Below I explain how you can upload an exisiting file.\n\n\n\nAfter navigating to (i.e., clicking on) your new Folder (GEOG321) you can upload a File to your folder. You can use these instructions for uploading Study Question and Assignment files.\n\nClick on ‘Upload File’ \nClick on ‘Choose File’ \nThen navigate to the folder that contains your files of interest and click ’OK.\n\nYou should now see a file appear in the lower right window similar to the image below. \n\nClick on the file to open it. You should it see in the upper left window now. You can readjust the size of the windows to better view your code\n\n\n\n\nYou will be given example R Markdown files for your study questions and assignments. An R Markdown file is a plain text file has the extension .Rmd\nIt contains three important types of content:\n\nAn (optional) YAML header surrounded by —s.\nChunks of R code surrounded by ```.\nText mixed with simple text formatting like # heading and italics.\n\nWhen you open an .Rmd, you get a notebook interface where code and output are interleaved. You can run each code chunk by clicking the Run icon (it looks like a play button at the top of the chunk). RStudio executes the code and displays the results inline with the code.\nTo produce a complete report containing all text, code, and results, click “Knit”. It will by default knit to html (i.e., create an html file). This is the format you want to upload to myCourses.\n\n\n\nOnce you have completed your Study Questions or Assignments, ‘Knit’ your file to generate an ‘html’ file. The output should now appear in the same location/Folder as your .Rmd file (as shown below). \nTo export it to a folder on your computer (and then upload it to myCourses).\n\nCheck the box next to your file.\nClick on ‘More’&gt;‘Export’ \nThen click on ‘Download’.\n\nYour file should now be in your Downloads Folder.\nYou can now upload this PDF file to myCourses. Note, the graphs on the html file might not load properly on myCourses. Do NOT worry about this - the TA will download the html files so everything should display properly.",
+    "text": "This will avoid you having to download R and RStudio on your computer.\nHowever, if you wish to download R & RStudio on your personnal computer, you can find instructions here\n\n\n\nGo to https://rstudio.geog.mcgill.ca\nLogin with your McGill credentials\n\nYour window should now look like this:\n\n\n\n\nFirst you will want to create a new folder for the course.\n\nIn the lower right window, click on ‘New Folder’ \nEnter ‘GEOG321’ as the folder name then click ‘OK’  ### Creating a new File\n\nTo create a new file, in the top left click on File &gt; New File. Then select the file of your choice. This is shown in the figure below.  For this course we will primarily be using R Scripts or R Markdown files. However, you will rarely have to create a script/file from scratch as templates will be handed out for Study Questions and Assignments. Below I explain how you can upload an exisiting file.\n\n\n\nAfter navigating to (i.e., clicking on) your new Folder (GEOG321) you can upload a File to your folder. You can use these instructions for uploading Study Question and Assignment files.\n\nClick on ‘Upload File’ \nClick on ‘Choose File’ \nThen navigate to the folder that contains your files of interest and click ’OK.\n\nYou should now see a file appear in the lower right window similar to the image below. \n\nClick on the file to open it. You should it see in the upper left window now. You can readjust the size of the windows to better view your code",
     "crumbs": [
       "R Resources",
       "RStudio Server"
@@ -542,7 +663,18 @@
     "href": "Rresources/RStudioServer.html#here-are-instructions-for-accessing-and-nagivating-rstudio-server",
     "title": "RStudio Server",
     "section": "",
-    "text": "This will avoid you having to download R and RStudio on your computer.\nHowever, if you wish to download R & RStudio on your personnal computer, you can find instructions here\n\n\n\nGo to https://rstudio.geog.mcgill.ca\nLogin with your McGill credentials\n\nYour window should now look like this:\n\n\n\n\nFirst you will want to create a new folder for the course.\n\nIn the lower right window, click on ‘New Folder’ \nEnter ‘GEOG321’ as the folder name then click ‘OK’  ### Creating a new File\n\nTo create a new file, in the top left click on File &gt; New File. Then select the file of your choice. This is shown in the figure below.  For this course we will primarily be using R Scripts or R Markdown files. However, you will rarely have to create a script/file from scratch as templates will be handed out for Study Questions and Assignments. Below I explain how you can upload an exisiting file.\n\n\n\nAfter navigating to (i.e., clicking on) your new Folder (GEOG321) you can upload a File to your folder. You can use these instructions for uploading Study Question and Assignment files.\n\nClick on ‘Upload File’ \nClick on ‘Choose File’ \nThen navigate to the folder that contains your files of interest and click ’OK.\n\nYou should now see a file appear in the lower right window similar to the image below. \n\nClick on the file to open it. You should it see in the upper left window now. You can readjust the size of the windows to better view your code\n\n\n\n\nYou will be given example R Markdown files for your study questions and assignments. An R Markdown file is a plain text file has the extension .Rmd\nIt contains three important types of content:\n\nAn (optional) YAML header surrounded by —s.\nChunks of R code surrounded by ```.\nText mixed with simple text formatting like # heading and italics.\n\nWhen you open an .Rmd, you get a notebook interface where code and output are interleaved. You can run each code chunk by clicking the Run icon (it looks like a play button at the top of the chunk). RStudio executes the code and displays the results inline with the code.\nTo produce a complete report containing all text, code, and results, click “Knit”. It will by default knit to html (i.e., create an html file). This is the format you want to upload to myCourses.\n\n\n\nOnce you have completed your Study Questions or Assignments, ‘Knit’ your file to generate an ‘html’ file. The output should now appear in the same location/Folder as your .Rmd file (as shown below). \nTo export it to a folder on your computer (and then upload it to myCourses).\n\nCheck the box next to your file.\nClick on ‘More’&gt;‘Export’ \nThen click on ‘Download’.\n\nYour file should now be in your Downloads Folder.\nYou can now upload this PDF file to myCourses. Note, the graphs on the html file might not load properly on myCourses. Do NOT worry about this - the TA will download the html files so everything should display properly.",
+    "text": "This will avoid you having to download R and RStudio on your computer.\nHowever, if you wish to download R & RStudio on your personnal computer, you can find instructions here\n\n\n\nGo to https://rstudio.geog.mcgill.ca\nLogin with your McGill credentials\n\nYour window should now look like this:\n\n\n\n\nFirst you will want to create a new folder for the course.\n\nIn the lower right window, click on ‘New Folder’ \nEnter ‘GEOG321’ as the folder name then click ‘OK’  ### Creating a new File\n\nTo create a new file, in the top left click on File &gt; New File. Then select the file of your choice. This is shown in the figure below.  For this course we will primarily be using R Scripts or R Markdown files. However, you will rarely have to create a script/file from scratch as templates will be handed out for Study Questions and Assignments. Below I explain how you can upload an exisiting file.\n\n\n\nAfter navigating to (i.e., clicking on) your new Folder (GEOG321) you can upload a File to your folder. You can use these instructions for uploading Study Question and Assignment files.\n\nClick on ‘Upload File’ \nClick on ‘Choose File’ \nThen navigate to the folder that contains your files of interest and click ’OK.\n\nYou should now see a file appear in the lower right window similar to the image below. \n\nClick on the file to open it. You should it see in the upper left window now. You can readjust the size of the windows to better view your code",
+    "crumbs": [
+      "R Resources",
+      "RStudio Server"
+    ]
+  },
+  {
+    "objectID": "Rresources/RStudioServer.html#important-note-on-folders-and-file-paths",
+    "href": "Rresources/RStudioServer.html#important-note-on-folders-and-file-paths",
+    "title": "RStudio Server",
+    "section": "Important note on folders and file paths",
+    "text": "Important note on folders and file paths\nFor this course, all files related to a given assignment or study question should be kept in the same folder (e.g., your GEOG321 folder).\nThis includes:\n\nThe Markdown file (.Rmd)\nAny data files (e.g., .csv, .txt)\nAny images you include in your document\n\nKeeping everything in one folder avoids file-path errors and ensures your code runs correctly on the RStudio Server and on the TA’s computer.\n\nHow R finds files\nWhen you load a file, R looks in the same folder as your .Rmd file (unless you specify otherwise).\n\n\nCommon file-path mistakes to avoid\n\nSaving data on your Desktop while your .Rmd file is in GEOG321\nMoving files after you have started working on the assignment\nRenaming files without updating the filename in your code\nUsing Windows- or Mac-specific file paths\n\n\n\nRecommended workflow\n\nCreate your GEOG321 folder\nUpload the assignment .Rmd file into this folder\nUpload all required data files into the same folder\nOpen the .Rmd from that folder\nRender the document\n\nIf your files are organized this way, your code should run without file-path errors.\n\n\nR Markdown basics (i.e., how to run your code)\nYou will be given example R Markdown files for your study questions and assignments. An R Markdown file is a plain text file has the extension .Rmd\nIt contains three important types of content:\n\nAn (optional) YAML header surrounded by —s.\nChunks of R code surrounded by ```.\nText mixed with simple text formatting like # heading and italics.\n\nWhen you open an .Rmd, you get a notebook interface where code and output are interleaved. You can run each code chunk by clicking the Run icon (it looks like a play button at the top of the chunk). RStudio executes the code and displays the results inline with the code.\nTo produce a complete report containing all text, code, and results, click “Knit”. It will by default knit to html (i.e., create an html file). This is the format you want to upload to myCourses.\n\n\nDownloading the output to upload your file to myCourses\nOnce you have completed your Study Questions or Assignments, ‘Knit’ your file to generate an ‘html’ file. The output should now appear in the same location/Folder as your .Rmd file (as shown below). \nTo export it to a folder on your computer (and then upload it to myCourses).\n\nCheck the box next to your file.\nClick on ‘More’&gt;‘Export’ \nThen click on ‘Download’.\n\nYour file should now be in your Downloads Folder.\nYou can now upload this PDF file to myCourses. Note, the graphs on the html file might not load properly on myCourses. Do NOT worry about this - the TA will download the html files so everything should display properly.",
     "crumbs": [
       "R Resources",
       "RStudio Server"
