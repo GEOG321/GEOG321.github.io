@@ -187,11 +187,11 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#here-are-instructions-for-downloading-r-and-using-r-on-your-computer" id="toc-here-are-instructions-for-downloading-r-and-using-r-on-your-computer" class="nav-link active" data-scroll-target="#here-are-instructions-for-downloading-r-and-using-r-on-your-computer">Here are instructions for downloading R and using R on your computer</a></li>
   <li><a href="#step-1-install-r" id="toc-step-1-install-r" class="nav-link" data-scroll-target="#step-1-install-r">Step 1: Install R</a></li>
   <li><a href="#step-2-install-rstudio" id="toc-step-2-install-rstudio" class="nav-link" data-scroll-target="#step-2-install-rstudio">Step 2: Install RStudio</a></li>
-  <li><a href="#step-3-create-a-folder-for-the-course" id="toc-step-3-create-a-folder-for-the-course" class="nav-link" data-scroll-target="#step-3-create-a-folder-for-the-course">Step 3: Create a Folder for the Course</a></li>
-  <li><a href="#step-4-open-or-create-files" id="toc-step-4-open-or-create-files" class="nav-link" data-scroll-target="#step-4-open-or-create-files">Step 4: Open or Create Files</a>
+  <li><a href="#step-3-create-a-course-folder-on-your-computer" id="toc-step-3-create-a-course-folder-on-your-computer" class="nav-link" data-scroll-target="#step-3-create-a-course-folder-on-your-computer">Step 3: Create a Course Folder on Your Computer</a></li>
+  <li><a href="#step-4-find-and-open-your-files-in-rstudio" id="toc-step-4-find-and-open-your-files-in-rstudio" class="nav-link" data-scroll-target="#step-4-find-and-open-your-files-in-rstudio">Step 4: Find and Open Your Files in RStudio</a>
   <ul class="collapse">
-  <li><a href="#opening-a-file" id="toc-opening-a-file" class="nav-link" data-scroll-target="#opening-a-file">Opening a File</a></li>
-  <li><a href="#creating-a-new-file" id="toc-creating-a-new-file" class="nav-link" data-scroll-target="#creating-a-new-file">Creating a New File</a></li>
+  <li><a href="#opening-an-existing-assignment-file" id="toc-opening-an-existing-assignment-file" class="nav-link" data-scroll-target="#opening-an-existing-assignment-file">Opening an existing assignment file</a></li>
+  <li><a href="#creating-a-new-file-if-needed" id="toc-creating-a-new-file-if-needed" class="nav-link" data-scroll-target="#creating-a-new-file-if-needed">Creating a new file (if needed)</a></li>
   </ul></li>
   <li><a href="#r-markdown-running-your-code" id="toc-r-markdown-running-your-code" class="nav-link" data-scroll-target="#r-markdown-running-your-code">R Markdown: Running Your Code</a>
   <ul class="collapse">
@@ -265,50 +265,55 @@ ul.task-list li input[type="checkbox"] {
 <li><p>Open the installer and follow the steps</p></li>
 <li><p>Open <strong>RStudio</strong> when installation is complete</p></li>
 </ol>
-<p>Your screen should look similar to this:</p>
-<p><img src="images/RStudioWindow.png" class="img-fluid"></p>
 </section>
-<section id="step-3-create-a-folder-for-the-course" class="level2">
-<h2 class="anchored" data-anchor-id="step-3-create-a-folder-for-the-course">Step 3: Create a Folder for the Course</h2>
-<p><strong>You should keep all course files in one place.</strong></p>
+<section id="step-3-create-a-course-folder-on-your-computer" class="level2">
+<h2 class="anchored" data-anchor-id="step-3-create-a-course-folder-on-your-computer">Step 3: Create a Course Folder on Your Computer</h2>
+<p><strong>Before you open RStudio, make one folder on your computer where you will keep <em>all</em> GEOG321 files.</strong><br>
+This will make it much easier to find your assignments and your final HTML files.</p>
 <ol type="1">
-<li><p>In RStudio, look at the <strong>Files</strong> panel (bottom right)</p></li>
-<li><p>Click <strong>New Folder</strong><br>
-<img src="images/NewFolder.png" class="img-fluid"></p></li>
-<li><p>Name the folder <strong>GEOG321</strong> and click <strong>OK</strong><br>
-<img src="images/FolderName.png" class="img-fluid"></p></li>
+<li><p>On your computer, create a new folder named <strong>GEOG321</strong>:</p>
+<ul>
+<li><p><strong>Windows (PC)</strong>:<br>
+Open <strong>File Explorer</strong> → go to <strong>This PC → Local Disk (C:)</strong> (or <strong>Documents</strong>) → <strong>New folder</strong> → name it <strong>GEOG321</strong></p></li>
+<li><p><strong>macOS (Mac)</strong>:<br>
+Open <strong>Finder</strong> → go to <strong>Macintosh HD → Users → your-username</strong> (or <strong>Documents</strong>) → <strong>New Folder</strong> → name it <strong>GEOG321</strong></p></li>
+</ul></li>
+<li><p><strong>Move all course files into this folder</strong> (downloaded assignments, data files, images, etc.).<br>
+Keep everything for the course in the <strong>GEOG321</strong> folder.</p></li>
 </ol>
 </section>
-<section id="step-4-open-or-create-files" class="level2">
-<h2 class="anchored" data-anchor-id="step-4-open-or-create-files">Step 4: Open or Create Files</h2>
-<section id="opening-a-file" class="level3">
-<h3 class="anchored" data-anchor-id="opening-a-file">Opening a File</h3>
-<p>If you are given a file for an assignment:</p>
+<section id="step-4-find-and-open-your-files-in-rstudio" class="level2">
+<h2 class="anchored" data-anchor-id="step-4-find-and-open-your-files-in-rstudio">Step 4: Find and Open Your Files in RStudio</h2>
+<p>Once your files are in your <strong>GEOG321</strong> folder, you will use RStudio to navigate to that folder and open what you need.</p>
+<section id="opening-an-existing-assignment-file" class="level3">
+<h3 class="anchored" data-anchor-id="opening-an-existing-assignment-file">Opening an existing assignment file</h3>
 <ol type="1">
-<li><p>Click <strong>Upload</strong><br>
-<img src="images/UploadFile.png" class="img-fluid"></p></li>
-<li><p>Click <strong>Choose File</strong><br>
-<img src="images/ChooseFile.png" class="img-fluid"></p></li>
-<li><p>Find the file on your computer and click <strong>Open</strong></p></li>
+<li>Open <strong>RStudio</strong></li>
+<li>In the <strong>Files</strong> panel (bottom right), click <strong>… (More)</strong> or <strong>Browse</strong> (wording may vary)</li>
+<li>Navigate to your <strong>GEOG321</strong> folder on your computer</li>
+<li>Click the assignment file (for example, an <code>.Rmd</code> file) to open it</li>
 </ol>
-<p>The file will appear in the <strong>Files</strong> panel. Click it to open.</p>
-<p><img src="images/FileUploaded.png" class="img-fluid"></p>
+<p>If you don’t see the file you expect, it usually means it was saved in <strong>Downloads</strong> or another folder—move it into <strong>GEOG321</strong> first.</p>
 </section>
-<section id="creating-a-new-file" class="level3">
-<h3 class="anchored" data-anchor-id="creating-a-new-file">Creating a New File</h3>
-<p>To make a new file:</p>
+<section id="creating-a-new-file-if-needed" class="level3">
+<h3 class="anchored" data-anchor-id="creating-a-new-file-if-needed">Creating a new file (if needed)</h3>
+<p>Most of the time, you will use prepared course files. If you need to create a new one:</p>
 <ol type="1">
-<li>Click <strong>File</strong> → <strong>New File</strong></li>
+<li>Click <strong>File → New File</strong></li>
 <li>Choose <strong>R Script</strong> or <strong>R Markdown</strong></li>
+<li>When you save it, save it <strong>inside your GEOG321 folder</strong></li>
 </ol>
-<p><img src="images/NewFile.png" class="img-fluid"></p>
-<p>Most of the time, you will use files that are already prepared for you.</p>
 </section>
 </section>
 <section id="r-markdown-running-your-code" class="level2">
 <h2 class="anchored" data-anchor-id="r-markdown-running-your-code">R Markdown: Running Your Code</h2>
 <p>Most assignments will use <strong>R Markdown (<code>.Rmd</code>)</strong> files.</p>
-<p>An R Markdown file contains: - Text (instructions and answers) - Code (inside gray boxes called <em>code chunks</em>) - Output (plots, tables, numbers)</p>
+<p>An R Markdown file contains:</p>
+<ul>
+<li>Text (instructions and answers)</li>
+<li>Code (inside gray boxes called <em>code chunks</em>)</li>
+<li>Output (plots, tables, numbers)</li>
+</ul>
 <section id="running-code" class="level3">
 <h3 class="anchored" data-anchor-id="running-code">Running Code</h3>
 <ul>
@@ -329,7 +334,12 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="submitting-to-mycourses" class="level2">
 <h2 class="anchored" data-anchor-id="submitting-to-mycourses">Submitting to myCourses</h2>
-<p>Upload the <strong>HTML file</strong> (not the <code>.Rmd</code> file) to myCourses.</p>
+<p>When you knit, your <strong>HTML file is saved in the same folder as your <code>.Rmd</code> file</strong> (your <strong>GEOG321</strong> folder).</p>
+<ol type="1">
+<li>Open your <strong>GEOG321</strong> folder on your computer</li>
+<li>Find the <strong>HTML file</strong></li>
+<li>Upload the <strong>HTML file</strong> (not the <code>.Rmd</code> file) to <strong>myCourses</strong></li>
+</ol>
 <p><strong>Note:</strong> Sometimes graphs do not display inside myCourses. This is normal.<br>
 The TA will download your file and everything will display correctly.</p>
 </section>

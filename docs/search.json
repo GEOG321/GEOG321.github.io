@@ -432,29 +432,29 @@
     "href": "Rresources/RDesktop.html#step-2-install-rstudio",
     "title": "Running R on Your Own Computer",
     "section": "Step 2: Install RStudio",
-    "text": "Step 2: Install RStudio\nRStudio is the program you will use every time you work on assignments.\n\nGo to:\nhttps://posit.co/download/rstudio-desktop/\nDownload RStudio Desktop (Free)\nOpen the installer and follow the steps\nOpen RStudio when installation is complete\n\nYour screen should look similar to this:",
+    "text": "Step 2: Install RStudio\nRStudio is the program you will use every time you work on assignments.\n\nGo to:\nhttps://posit.co/download/rstudio-desktop/\nDownload RStudio Desktop (Free)\nOpen the installer and follow the steps\nOpen RStudio when installation is complete",
     "crumbs": [
       "R Resources",
       "Running R on Your Own Computer"
     ]
   },
   {
-    "objectID": "Rresources/RDesktop.html#step-3-create-a-folder-for-the-course",
-    "href": "Rresources/RDesktop.html#step-3-create-a-folder-for-the-course",
+    "objectID": "Rresources/RDesktop.html#step-3-create-a-course-folder-on-your-computer",
+    "href": "Rresources/RDesktop.html#step-3-create-a-course-folder-on-your-computer",
     "title": "Running R on Your Own Computer",
-    "section": "Step 3: Create a Folder for the Course",
-    "text": "Step 3: Create a Folder for the Course\nYou should keep all course files in one place.\n\nIn RStudio, look at the Files panel (bottom right)\nClick New Folder\n\nName the folder GEOG321 and click OK",
+    "section": "Step 3: Create a Course Folder on Your Computer",
+    "text": "Step 3: Create a Course Folder on Your Computer\nBefore you open RStudio, make one folder on your computer where you will keep all GEOG321 files.\nThis will make it much easier to find your assignments and your final HTML files.\n\nOn your computer, create a new folder named GEOG321:\n\nWindows (PC):\nOpen File Explorer → go to This PC → Local Disk (C:) (or Documents) → New folder → name it GEOG321\nmacOS (Mac):\nOpen Finder → go to Macintosh HD → Users → your-username (or Documents) → New Folder → name it GEOG321\n\nMove all course files into this folder (downloaded assignments, data files, images, etc.).\nKeep everything for the course in the GEOG321 folder.",
     "crumbs": [
       "R Resources",
       "Running R on Your Own Computer"
     ]
   },
   {
-    "objectID": "Rresources/RDesktop.html#step-4-open-or-create-files",
-    "href": "Rresources/RDesktop.html#step-4-open-or-create-files",
+    "objectID": "Rresources/RDesktop.html#step-4-find-and-open-your-files-in-rstudio",
+    "href": "Rresources/RDesktop.html#step-4-find-and-open-your-files-in-rstudio",
     "title": "Running R on Your Own Computer",
-    "section": "Step 4: Open or Create Files",
-    "text": "Step 4: Open or Create Files\n\nOpening a File\nIf you are given a file for an assignment:\n\nClick Upload\n\nClick Choose File\n\nFind the file on your computer and click Open\n\nThe file will appear in the Files panel. Click it to open.\n\n\n\nCreating a New File\nTo make a new file:\n\nClick File → New File\nChoose R Script or R Markdown\n\n\nMost of the time, you will use files that are already prepared for you.",
+    "section": "Step 4: Find and Open Your Files in RStudio",
+    "text": "Step 4: Find and Open Your Files in RStudio\nOnce your files are in your GEOG321 folder, you will use RStudio to navigate to that folder and open what you need.\n\nOpening an existing assignment file\n\nOpen RStudio\nIn the Files panel (bottom right), click … (More) or Browse (wording may vary)\nNavigate to your GEOG321 folder on your computer\nClick the assignment file (for example, an .Rmd file) to open it\n\nIf you don’t see the file you expect, it usually means it was saved in Downloads or another folder—move it into GEOG321 first.\n\n\nCreating a new file (if needed)\nMost of the time, you will use prepared course files. If you need to create a new one:\n\nClick File → New File\nChoose R Script or R Markdown\nWhen you save it, save it inside your GEOG321 folder",
     "crumbs": [
       "R Resources",
       "Running R on Your Own Computer"
@@ -465,7 +465,7 @@
     "href": "Rresources/RDesktop.html#r-markdown-running-your-code",
     "title": "Running R on Your Own Computer",
     "section": "R Markdown: Running Your Code",
-    "text": "R Markdown: Running Your Code\nMost assignments will use R Markdown (.Rmd) files.\nAn R Markdown file contains: - Text (instructions and answers) - Code (inside gray boxes called code chunks) - Output (plots, tables, numbers)\n\nRunning Code\n\nClick the Run button (▶) at the top of a code chunk\nThe result will appear below the code\n\n\n\nCreating Your Final File\nWhen you are finished:\n\nClick Knit\nAn HTML file will be created automatically\n\nThis is the file you submit to myCourses.",
+    "text": "R Markdown: Running Your Code\nMost assignments will use R Markdown (.Rmd) files.\nAn R Markdown file contains:\n\nText (instructions and answers)\nCode (inside gray boxes called code chunks)\nOutput (plots, tables, numbers)\n\n\nRunning Code\n\nClick the Run button (▶) at the top of a code chunk\nThe result will appear below the code\n\n\n\nCreating Your Final File\nWhen you are finished:\n\nClick Knit\nAn HTML file will be created automatically\n\nThis is the file you submit to myCourses.",
     "crumbs": [
       "R Resources",
       "Running R on Your Own Computer"
@@ -476,7 +476,7 @@
     "href": "Rresources/RDesktop.html#submitting-to-mycourses",
     "title": "Running R on Your Own Computer",
     "section": "Submitting to myCourses",
-    "text": "Submitting to myCourses\nUpload the HTML file (not the .Rmd file) to myCourses.\nNote: Sometimes graphs do not display inside myCourses. This is normal.\nThe TA will download your file and everything will display correctly.",
+    "text": "Submitting to myCourses\nWhen you knit, your HTML file is saved in the same folder as your .Rmd file (your GEOG321 folder).\n\nOpen your GEOG321 folder on your computer\nFind the HTML file\nUpload the HTML file (not the .Rmd file) to myCourses\n\nNote: Sometimes graphs do not display inside myCourses. This is normal.\nThe TA will download your file and everything will display correctly.",
     "crumbs": [
       "R Resources",
       "Running R on Your Own Computer"
